@@ -1,0 +1,49 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>Equipment list</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Внутренний идентификатор</th>
+            <th>Производитель</th>
+            <th>Марка(модель) оборудования</th>
+            <th>Тип оборудования</th>
+            <th>Место установки</th>
+            <th></th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('equipment_show', { 'id': entity.extId }) }}">{{ entity.code }}</a></td>
+                <td>{{ entity.vendor }}</td>
+                <td>{{ entity.model }}</td>
+                <td>{{ entity.type.name }}</td>
+                <td>{{ entity.destinations }}</td>
+                <td>{{ entity.isActiveSw }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('equipment_show', { 'id': entity.extId }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('equipment_edit', { 'id': entity.extId }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('equipment_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+{% endblock %}

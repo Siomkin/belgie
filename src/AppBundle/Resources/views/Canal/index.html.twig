@@ -1,0 +1,43 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h1>Canal list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Isactivesw</th>
+                <th>Extid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('canal_show', { 'id': entity.extId }) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.isActiveSw }}</td>
+                <td>{{ entity.extId }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('canal_show', { 'id': entity.extId }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('canal_edit', { 'id': entity.extId }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('canal_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

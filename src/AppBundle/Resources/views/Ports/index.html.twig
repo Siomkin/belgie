@@ -1,0 +1,47 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h1>Ports list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Portid</th>
+                <th>Interface</th>
+                <th>Speed</th>
+                <th>Type</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('ports_show', { 'id': entity.id }) }}">{{ entity.portId }}</a></td>
+                <td>{{ entity.interface }}</td>
+                <td>{{ entity.speed }}</td>
+                <td>{{ entity.type }}</td>
+                <td>{{ entity.id }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('ports_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ports_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('ports_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

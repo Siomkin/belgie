@@ -1,0 +1,60 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h1>Line</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ entity.code }}</td>
+            </tr>
+            <tr>
+                <th>Nodelength</th>
+                <td>{{ entity.nodeLength }}</td>
+            </tr>
+            <tr>
+                <th>Cabletype</th>
+                <td>{{ entity.cableType }}</td>
+            </tr>
+            <tr>
+                <th>Cablemark</th>
+                <td>{{ entity.cableMark }}</td>
+            </tr>
+            <tr>
+                <th>Cablecap</th>
+                <td>{{ entity.cableCap }}</td>
+            </tr>
+            <tr>
+                <th>Capacity</th>
+                <td>{{ entity.capacity }}</td>
+            </tr>
+            <tr>
+                <th>Isactivesw</th>
+                <td>{{ entity.isActiveSw }}</td>
+            </tr>
+            <tr>
+                <th>Extid</th>
+                <td>{{ entity.extId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('line') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('line_edit', { 'id': entity.extId }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
