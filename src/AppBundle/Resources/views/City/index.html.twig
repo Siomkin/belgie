@@ -1,41 +1,30 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>City list</h1>
-
-    <table class="records_list">
+    <h1>Города</h1>
+    <div class="text-right">
+        <a class="btn btn-default" href="{{ path('city_new') }}">
+            Добавить город
+        </a>
+    </div>
+    <table class="table">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+            <th>Действия</th>
+        </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('city_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>{{ entity.id }}</td>
+                <td><a href="{{ path('city_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('city_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('city_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                    <a href="{{ path('city_edit', { 'id': entity.id }) }}">Редактировать</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('city_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% endblock %}

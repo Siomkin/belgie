@@ -1,60 +1,69 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Line</h1>
+    <h1>Линия</h1>
 
-    <table class="record_properties">
+    <table class="table table-striped">
         <tbody>
-            <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
-                <th>Code</th>
-                <td>{{ entity.code }}</td>
-            </tr>
-            <tr>
-                <th>Nodelength</th>
-                <td>{{ entity.nodeLength }}</td>
-            </tr>
-            <tr>
-                <th>Cabletype</th>
-                <td>{{ entity.cableType }}</td>
-            </tr>
-            <tr>
-                <th>Cablemark</th>
-                <td>{{ entity.cableMark }}</td>
-            </tr>
-            <tr>
-                <th>Cablecap</th>
-                <td>{{ entity.cableCap }}</td>
-            </tr>
-            <tr>
-                <th>Capacity</th>
-                <td>{{ entity.capacity }}</td>
-            </tr>
-            <tr>
-                <th>Isactivesw</th>
-                <td>{{ entity.isActiveSw }}</td>
-            </tr>
-            <tr>
-                <th>Extid</th>
-                <td>{{ entity.extId }}</td>
-            </tr>
+        <tr>
+            <th>Extid</th>
+            <td>{{ entity.extId }}</td>
+        </tr>
+        <tr>
+            <th>Наименование линии</th>
+            <td>{{ entity.name }}</td>
+        </tr>
+        <tr>
+            <th>Внутренний идентификатор</th>
+            <td>{{ entity.code }}</td>
+        </tr>
+        <tr>
+            <th>Протяженность участка между узлами</th>
+            <td>{{ entity.nodeLength }}</td>
+        </tr>
+        <tr>
+            <th>Тип</th>
+            <td>{{ entity.cableType }}</td>
+        </tr>
+        <tr>
+            <th>Маркировка</th>
+            <td>{{ entity.cableMark }}</td>
+        </tr>
+        <tr>
+            <th>Емкость</th>
+            <td>{{ entity.cableCap }}</td>
+        </tr>
+        <tr>
+            <th>Задействованная емкость кабеля</th>
+            <td>{{ entity.capacity }}</td>
+        </tr>
+        <tr>
+            <th>Активный</th>
+            <td>{{ entity.isActiveSw }}</td>
+        </tr>
+        <tr>
+            <th>Расположение начального узла линии</th>
+            <td>{{ entity.destinationsBegin }}</td>
+        </tr>
+        <tr>
+            <th>Расположение конечного узла линии</th>
+            <td>{{ entity.destinationsEnd }}</td>
+        </tr>
+
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('line') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('line_edit', { 'id': entity.extId }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('line') }}">
+                Назад к списку
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('line_edit', { 'id': entity.extId }) }}">
+                Редактировать
+            </a>
+        </li>
+    </ul>
+    <div class="text-right">{{ form(delete_form) }}</div>
 {% endblock %}

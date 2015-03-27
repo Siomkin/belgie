@@ -15,18 +15,25 @@ class CityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-        ;
+            ->add(
+                'name',
+                null,
+                array(
+                    'label' => 'Название:'
+                )
+            );
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\City'
-        ));
+        $resolver->setDefaults(
+            array(
+                'data_class' => 'AppBundle\Entity\City'
+            )
+        );
     }
 
     /**

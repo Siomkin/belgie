@@ -53,7 +53,7 @@ class LineController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('line_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('line_show', array('id' => $entity->getExtId())));
         }
 
         return array(
@@ -76,7 +76,7 @@ class LineController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Добавить'));
 
         return $form;
     }
@@ -146,7 +146,7 @@ class LineController extends Controller
 
         return array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -161,11 +161,11 @@ class LineController extends Controller
     private function createEditForm(Line $entity)
     {
         $form = $this->createForm(new LineType(), $entity, array(
-            'action' => $this->generateUrl('line_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('line_update', array('id' => $entity->getExtId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Обновить'));
 
         return $form;
     }
@@ -240,7 +240,7 @@ class LineController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('line_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Удалить'))
             ->getForm()
         ;
     }

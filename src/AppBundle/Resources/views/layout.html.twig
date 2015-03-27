@@ -51,7 +51,7 @@
     {% block body %}
         {% for flashMessage in app.session.flashbag.get('notice') %}
             <div class="flash-message">
-                <em>Notice</em>: {{ flashMessage }}
+                <em>Сообщение</em>: {{ flashMessage }}
             </div>
         {% endfor %}
 
@@ -63,14 +63,19 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="{{ path('equipment') }}">Оборудование</a></li>
                                 <li><a href="{{ path('line') }}">Линии связи</a></li>
-                                <li><a href="{{ path('canal') }}">Каналы связи</a></li>
-                                <li><a href="{{ path('city') }}">Города</a></li>
-                                <li><a href="{{ path('region') }}">Область, район</a></li>
+                                <li><a href="#">Каналы связи</a></li>
+                                <li><a href="#">|</a></li>
                                 <li><a href="{{ path('street') }}">Улицы</a></li>
                                 <li><a href="{{ path('equipmenttype') }}">Тип оборудования</a></li>
+                                <li><a href="{{ path('city') }}">Города</a></li>
+                                <li><a href="{{ path('region') }}">Область, район</a></li>
+                                <li><a href="#">|</a></li>
+                                <li><a href="{{ path('organization') }}">Организация</a></li>
+
                             </ul>
                         {% endblock %}
                     </div>
+                </div>
             </nav>
         {% endblock %}
 

@@ -1,14 +1,14 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Редактировать регион</h1>
+    <h1>Редактировать организацию</h1>
 
     {{ form(edit_form) }}
 
     <ul class="record_actions">
         <li>
-            <a href="{{ path('region') }}">
-                Назад к списку
+            <a href="{{ path('organization') }}">
+                назад к списку
             </a>
         </li>
     </ul>

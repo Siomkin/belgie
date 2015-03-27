@@ -1,55 +1,43 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Line list</h1>
-
-    <table class="records_list">
+    <h1>Список линий</h1>
+    <div class="text-right">
+        <a class="btn btn-default" href="{{ path('line_new') }}">
+            Добавить линию
+        </a>
+    </div>
+    <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Code</th>
-                <th>Nodelength</th>
-                <th>Cabletype</th>
-                <th>Cablemark</th>
-                <th>Cablecap</th>
-                <th>Capacity</th>
-                <th>Isactivesw</th>
-                <th>Extid</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>id</th>
+            <th>Наименование линии</th>
+            <th>Внутренний идентификатор</th>
+            <th>Расположение начального узла линии</th>
+            <th>Расположение конечного узла линии</th>
+            <th>Протяженность участка между узлами</th>
+            <th>Задействованная емкость кабеля</th>
+            <th>Активный</th>
+
+            <th>Действия</th>
+        </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('line_show', { 'id': entity.extId }) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.extId }}</td>
+                <td>{{ entity.name }}</td>
                 <td>{{ entity.code }}</td>
+                <td>{{ entity.destinationsBegin }}</td>
+                <td>{{ entity.destinationsEnd }}</td>
                 <td>{{ entity.nodeLength }}</td>
-                <td>{{ entity.cableType }}</td>
-                <td>{{ entity.cableMark }}</td>
-                <td>{{ entity.cableCap }}</td>
                 <td>{{ entity.capacity }}</td>
                 <td>{{ entity.isActiveSw }}</td>
-                <td>{{ entity.extId }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('line_show', { 'id': entity.extId }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('line_edit', { 'id': entity.extId }) }}">edit</a>
-                    </li>
-                </ul>
+                    <a href="{{ path('line_edit', { 'id': entity.extId }) }}">ред.</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('line_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% endblock %}

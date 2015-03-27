@@ -35,6 +35,7 @@ class StreetController extends Controller
             'entities' => $entities,
         );
     }
+
     /**
      * Creates a new Street entity.
      *
@@ -58,7 +59,7 @@ class StreetController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -71,12 +72,16 @@ class StreetController extends Controller
      */
     private function createCreateForm(Street $entity)
     {
-        $form = $this->createForm(new StreetType(), $entity, array(
-            'action' => $this->generateUrl('street_create'),
-            'method' => 'POST',
-        ));
+        $form = $this->createForm(
+            new StreetType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('street_create'),
+                'method' => 'POST',
+            )
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Сохранить'));
 
         return $form;
     }
@@ -91,11 +96,11 @@ class StreetController extends Controller
     public function newAction()
     {
         $entity = new Street();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -119,7 +124,7 @@ class StreetController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -145,30 +150,35 @@ class StreetController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a Street entity.
-    *
-    * @param Street $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Street entity.
+     *
+     * @param Street $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Street $entity)
     {
-        $form = $this->createForm(new StreetType(), $entity, array(
-            'action' => $this->generateUrl('street_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+        $form = $this->createForm(
+            new StreetType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('street_update', array('id' => $entity->getId())),
+                'method' => 'PUT',
+            )
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Обновить'));
 
         return $form;
     }
+
     /**
      * Edits an existing Street entity.
      *
@@ -197,11 +207,12 @@ class StreetController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Street entity.
      *
@@ -240,8 +251,7 @@ class StreetController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('street_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->add('submit', 'submit', array('label' => 'Удалить'))
+            ->getForm();
     }
 }

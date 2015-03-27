@@ -3,12 +3,20 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Equipment
  *
- * @ORM\Table(name="equipment", indexes={@ORM\Index(name="fk_equipment_equipment_type_1", columns={"type_id"}), @ORM\Index(name="fk_equipment_destinations_1", columns={"destinations_id"})})
+ * @ORM\Table(name="equipment",
+ *  uniqueConstraints={@ORM\UniqueConstraint(name="uniq_code", columns={"code"})},
+ *  indexes={
+ * @ORM\Index(name="fk_equipment_equipment_type_1", columns={"type_id"}),
+ * @ORM\Index(name="fk_equipment_destinations_1", columns={"destinations_id"})
+ * })
  * @ORM\Entity
+ * @UniqueEntity("code")
  */
 class Equipment
 {
@@ -23,28 +31,27 @@ class Equipment
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="code", type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
+     * @ORM\Column(name="code", type="string", length=255, unique=true, nullable=false)
      */
     private $code;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="vendor", type="string", length=255, nullable=false)
      */
     private $vendor;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="model", type="string", length=255, nullable=false)
      */
     private $model;
 
     /**
      * @var boolean
-     *
      * @ORM\Column(name="is_active_sw", type="boolean", nullable=false)
      */
     private $isActiveSw = true;
@@ -52,9 +59,9 @@ class Equipment
     /**
      * @var \Destinations
      *
-     * @ORM\OneToOne(targetEntity="Destinations", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Destinations", cascade={"persist", "remove"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="destinations_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="destinations_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $destinations;
@@ -76,6 +83,7 @@ class Equipment
     {
         $this->destinations = new Destinations();
     }
+
     /**
      * Get extId
      *
@@ -181,13 +189,12 @@ class Equipment
     /**
      * Set destinations
      *
-     * @param  $destinations
+     * @param \AppBundle\Entity\Destinations $destinations
      * @return Equipment
      */
-    public function setDestinations( $destinations = null)
+    public function setDestinationsBegin(\AppBundle\Entity\Destinations $destinations = null)
     {
-       // $this->destinations = new Destinations();
-        $this->destinations=$destinations;
+        $this->destinations = $destinations;
 
         return $this;
     }

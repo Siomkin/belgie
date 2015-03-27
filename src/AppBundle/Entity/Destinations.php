@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Destinations
  *
@@ -30,14 +30,14 @@ class Destinations
 
     /**
      * @var integer
-     *
+     * @Assert\NotNull(groups={"address"})
      * @ORM\Column(name="address_index", type="integer", nullable=true)
      */
     private $addressIndex = '212000';
 
     /**
      * @var string
-     *
+     * @Assert\NotNull(groups={"address"})
      * @ORM\Column(name="address_building_number", type="string", length=10, nullable=true)
      */
     private $addressBuildingNumber;
@@ -93,7 +93,7 @@ class Destinations
 
     /**
      * @var \City
-     *
+     * @Assert\NotNull(groups={"address"})
      * @ORM\ManyToOne(targetEntity="City")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="address_city_id", referencedColumnName="id")
@@ -103,7 +103,7 @@ class Destinations
 
     /**
      * @var \Region
-     *
+     * @Assert\NotNull(groups={"address"})
      * @ORM\ManyToOne(targetEntity="Region")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="address_region_id", referencedColumnName="id")
@@ -113,7 +113,7 @@ class Destinations
 
     /**
      * @var \Street
-     *
+     * @Assert\NotNull(groups={"address"})
      * @ORM\ManyToOne(targetEntity="Street")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="address_street_id", referencedColumnName="id")

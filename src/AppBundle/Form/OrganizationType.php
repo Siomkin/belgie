@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class EquipmentTypeType extends AbstractType
+class OrganizationType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,7 +15,13 @@ class EquipmentTypeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, array('label' => 'Название:'));
+            ->add(
+                'name',
+                null,
+                array(
+                    'label' => 'Название:'
+                )
+            );
     }
 
     /**
@@ -25,7 +31,7 @@ class EquipmentTypeType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'AppBundle\Entity\EquipmentType'
+                'data_class' => 'AppBundle\Entity\Organization'
             )
         );
     }
@@ -35,6 +41,6 @@ class EquipmentTypeType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_equipmenttype';
+        return 'appbundle_organization';
     }
 }

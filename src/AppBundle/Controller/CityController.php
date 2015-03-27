@@ -32,9 +32,10 @@ class CityController extends Controller
         $entities = $em->getRepository('AppBundle:City')->findAll();
 
         return array(
-            'entities' => $entities,
+            'entities' => $entities
         );
     }
+
     /**
      * Creates a new City entity.
      *
@@ -58,7 +59,7 @@ class CityController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView()
         );
     }
 
@@ -71,12 +72,16 @@ class CityController extends Controller
      */
     private function createCreateForm(City $entity)
     {
-        $form = $this->createForm(new CityType(), $entity, array(
-            'action' => $this->generateUrl('city_create'),
-            'method' => 'POST',
-        ));
+        $form = $this->createForm(
+            new CityType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('city_create'),
+                'method' => 'POST'
+            )
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Добавить'));
 
         return $form;
     }
@@ -91,11 +96,11 @@ class CityController extends Controller
     public function newAction()
     {
         $entity = new City();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView()
         );
     }
 
@@ -119,8 +124,8 @@ class CityController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'entity' => $entity,
+            'delete_form' => $deleteForm->createView()
         );
     }
 
@@ -145,30 +150,35 @@ class CityController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView()
         );
     }
 
     /**
-    * Creates a form to edit a City entity.
-    *
-    * @param City $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a City entity.
+     *
+     * @param City $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(City $entity)
     {
-        $form = $this->createForm(new CityType(), $entity, array(
-            'action' => $this->generateUrl('city_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+        $form = $this->createForm(
+            new CityType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('city_update', array('id' => $entity->getId())),
+                'method' => 'PUT'
+            )
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Обновить'));
 
         return $form;
     }
+
     /**
      * Edits an existing City entity.
      *
@@ -197,11 +207,12 @@ class CityController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
+            'delete_form' => $deleteForm->createView()
         );
     }
+
     /**
      * Deletes a City entity.
      *
@@ -240,8 +251,7 @@ class CityController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('city_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->add('submit', 'submit', array('label' => 'Удалить'))
+            ->getForm();
     }
 }

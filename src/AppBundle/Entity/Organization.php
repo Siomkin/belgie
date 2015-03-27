@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * EquipmentType
+ * Organization
  *
- * @ORM\Table(name="equipment_type")
+ * @ORM\Table(name="organization")
  * @ORM\Entity
  */
-class EquipmentType
+class Organization
 {
     /**
      * @var integer
@@ -29,6 +29,13 @@ class EquipmentType
      */
     private $name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="canals", type="text", nullable=true)
+     */
+    private $canals;
+
 
     /**
      * Get id
@@ -44,7 +51,7 @@ class EquipmentType
      * Set name
      *
      * @param string $name
-     * @return EquipmentType
+     * @return Organization
      */
     public function setName($name)
     {
@@ -64,10 +71,25 @@ class EquipmentType
     }
 
     /**
+     * Set canals
+     *
+     * @param string $canals
+     * @return Organization
+     */
+    public function setCanals($canals)
+    {
+        $this->canals = $canals;
+
+        return $this;
+    }
+
+    /**
+     * Get canals
+     *
      * @return string
      */
-    public function __toString()
+    public function getCanals()
     {
-        return $this->getName();
+        return $this->canals;
     }
 }

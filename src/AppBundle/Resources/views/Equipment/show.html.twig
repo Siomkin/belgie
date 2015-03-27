@@ -1,44 +1,44 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Equipment</h1>
+    <h1>Оборудование</h1>
 
-    <table class="record_properties">
+    <table class="table">
         <tbody>
-            <tr>
-                <th>Code</th>
-                <td>{{ entity.code }}</td>
-            </tr>
-            <tr>
-                <th>Vendor</th>
-                <td>{{ entity.vendor }}</td>
-            </tr>
-            <tr>
-                <th>Model</th>
-                <td>{{ entity.model }}</td>
-            </tr>
-            <tr>
-                <th>Isactivesw</th>
-                <td>{{ entity.isActiveSw }}</td>
-            </tr>
-            <tr>
-                <th>Extid</th>
-                <td>{{ dump(entity.destinations.addressCity.name)}}</td>
-            </tr>
+        <tr>
+            <th>Внутренний идентификатор</th>
+            <td>{{ entity.code }}</td>
+        </tr>
+        <tr>
+            <th>Производитель</th>
+            <td>{{ entity.vendor }}</td>
+        </tr>
+        <tr>
+            <th>Марка(модель) оборудования</th>
+            <td>{{ entity.model }}</td>
+        </tr>
+        <tr>
+            <th>Тип оборудования</th>
+            <td>{{ entity.type.name }}</td>
+        </tr>
+        <tr>
+            <th>Включен</th>
+            <td>{{ entity.isActiveSw }}</td>
+        </tr>
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('equipment') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('equipment_edit', { 'id': entity.extId }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('equipment') }}">
+                Назад к списку
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('equipment_edit', { 'id': entity.extId }) }}">
+                редактировать
+            </a>
+        </li>
+    </ul>
+    <div class="text-right">{{ form(delete_form) }}</div>
 {% endblock %}

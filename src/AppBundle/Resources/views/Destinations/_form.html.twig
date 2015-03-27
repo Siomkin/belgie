@@ -1,3 +1,79 @@
-{{ form_label(form) }}
-{{ form_errors(form) }}
-{{ form_widget(form) }}
+<div class="form-group">
+    {{ form_label(form.type, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+    <div class="col-sm-offset-2 col-xs-6">{{ form_widget(form.type) }}</div>
+    <div class="col-xs-12">{{ form_errors(form.type) }}</div>
+</div>
+
+<div class="address" {% if form.type.vars.data %} style='display: none' {% endif %}>
+    <div class="form-group">
+        {{ form_label(form.addressCity, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.addressCity) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.addressCity) }}</div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.addressRegion, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.addressRegion) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.addressRegion) }}</div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.addressStreet, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.addressStreet) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.addressStreet) }}</div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.addressIndex, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.addressIndex) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.addressIndex) }}</div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.addressBuildingNumber, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.addressBuildingNumber) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.addressBuildingNumber) }}</div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.addressOfficeNumber, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.addressOfficeNumber) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.addressOfficeNumber) }}</div>
+    </div>
+</div>
+
+<div class="coords" {% if not form.type.vars.data %} style='display: none' {% endif %} >
+    <h4>Широта:</h4>
+
+    <div class="form-group">
+        {{ form_label(form.latitudeDeg, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.latitudeDeg) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.latitudeDeg) }}</div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.latitudeMin, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.latitudeMin) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.latitudeMin) }}</div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.latitudeSec, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.latitudeSec) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.latitudeSec) }}</div>
+    </div>
+
+    <h4>Долгота:</h4>
+
+    <div class="form-group">
+        {{ form_label(form.longitudeDeg, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.longitudeDeg) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.longitudeDeg) }}</div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.longitudeMin, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.longitudeMin) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.longitudeMin) }}</div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.longitudeSec, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.longitudeSec) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.longitudeSec) }}</div>
+    </div>
+</div>

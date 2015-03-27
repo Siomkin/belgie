@@ -15,27 +15,34 @@ class LineType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('code')
-            ->add('nodeLength')
-            ->add('cableType')
-            ->add('cableMark')
-            ->add('cableCap')
-            ->add('capacity')
-            ->add('isActiveSw')
-            ->add('destinationsEnd')
-            ->add('destinationsBegin')
-        ;
+            ->add('name', null, array('label' => '* Наименование линии:'))
+            ->add('code', null, array('label' => '* Внутренний идентификатор(код):'))
+            ->add('nodeLength', null, array('label' => '* Протяженность участка между узлами:'))
+            ->add('cableType', null, array('label' => '* Тип:'))
+            ->add('cableMark', null, array('label' => '* Маркировка:'))
+            ->add('cableCap', null, array('label' => '* Емкость:'))
+            ->add('capacity', null, array('label' => '* Задействованная емкость кабеля:'))
+            ->add('isActiveSw', null, array('label' => 'Активный'))
+            ->add(
+                'destinationsBegin',
+                new DestinationsType()
+            )->add(
+                'destinationsEnd',
+                new DestinationsType()
+            );
+
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Line'
-        ));
+        $resolver->setDefaults(
+            array(
+                'data_class' => 'AppBundle\Entity\Line'
+            )
+        );
     }
 
     /**

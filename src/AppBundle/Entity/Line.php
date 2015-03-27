@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Line
@@ -23,49 +24,55 @@ class Line
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="code", type="string", length=255, nullable=false)
      */
     private $code;
 
     /**
      * @var integer
-     *
+     * @Assert\GreaterThanOrEqual(
+     *     value = 0
+     * )
      * @ORM\Column(name="node_length", type="integer", nullable=false)
      */
     private $nodeLength;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="cable_type", type="string", length=255, nullable=false)
      */
     private $cableType;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="cable_mark", type="string", length=255, nullable=false)
      */
     private $cableMark;
 
     /**
      * @var integer
-     *
+     * @Assert\GreaterThanOrEqual(
+     *     value = 0
+     * )
      * @ORM\Column(name="cable_cap", type="integer", nullable=false)
      */
     private $cableCap;
 
     /**
      * @var integer
-     *
+     * @Assert\GreaterThanOrEqual(
+     *     value = 0
+     * )
      * @ORM\Column(name="capacity", type="integer", nullable=false)
      */
     private $capacity;
@@ -75,14 +82,14 @@ class Line
      *
      * @ORM\Column(name="is_active_sw", type="boolean", nullable=false)
      */
-    private $isActiveSw = '1';
+    private $isActiveSw = true;
 
     /**
      * @var \Destinations
      *
-     * @ORM\ManyToOne(targetEntity="Destinations")
+     * @ORM\OneToOne(targetEntity="Destinations", cascade={"persist", "remove"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="destinations_begin_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="destinations_begin_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $destinationsBegin;
@@ -90,19 +97,26 @@ class Line
     /**
      * @var \Destinations
      *
-     * @ORM\ManyToOne(targetEntity="Destinations")
+     * @ORM\OneToOne(targetEntity="Destinations", cascade={"persist", "remove"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="destinations_end_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="destinations_end_id", referencedColumnName="id", onDelete="CASCADE")
      * })
      */
     private $destinationsEnd;
 
-
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->destinationsBegin = new Destinations();
+        $this->destinationsEnd = new Destinations();
+    }
 
     /**
      * Get extId
      *
-     * @return integer 
+     * @return integer
      */
     public function getExtId()
     {
@@ -125,7 +139,7 @@ class Line
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -148,7 +162,7 @@ class Line
     /**
      * Get code
      *
-     * @return string 
+     * @return string
      */
     public function getCode()
     {
@@ -171,7 +185,7 @@ class Line
     /**
      * Get nodeLength
      *
-     * @return integer 
+     * @return integer
      */
     public function getNodeLength()
     {
@@ -194,7 +208,7 @@ class Line
     /**
      * Get cableType
      *
-     * @return string 
+     * @return string
      */
     public function getCableType()
     {
@@ -217,7 +231,7 @@ class Line
     /**
      * Get cableMark
      *
-     * @return string 
+     * @return string
      */
     public function getCableMark()
     {
@@ -240,7 +254,7 @@ class Line
     /**
      * Get cableCap
      *
-     * @return integer 
+     * @return integer
      */
     public function getCableCap()
     {
@@ -263,7 +277,7 @@ class Line
     /**
      * Get capacity
      *
-     * @return integer 
+     * @return integer
      */
     public function getCapacity()
     {
@@ -286,7 +300,7 @@ class Line
     /**
      * Get isActiveSw
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActiveSw()
     {
@@ -309,7 +323,7 @@ class Line
     /**
      * Get destinationsBegin
      *
-     * @return \AppBundle\Entity\Destinations 
+     * @return \AppBundle\Entity\Destinations
      */
     public function getDestinationsBegin()
     {
@@ -332,7 +346,7 @@ class Line
     /**
      * Get destinationsEnd
      *
-     * @return \AppBundle\Entity\Destinations 
+     * @return \AppBundle\Entity\Destinations
      */
     public function getDestinationsEnd()
     {

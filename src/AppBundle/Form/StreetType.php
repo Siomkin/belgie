@@ -19,13 +19,7 @@ class StreetType extends AbstractType
                 'name',
                 null,
                 array(
-                    'label' => 'Название',
-                    'label_attr' => array(
-                        'class' => 'col-xs-2'
-                    ),
-                    'attr' => array(
-                        'class' => 'col-xs-6'
-                    )
+                    'label' => 'Название:'
                 )
             );
     }

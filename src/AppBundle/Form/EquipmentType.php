@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class EquipmentType extends AbstractType
@@ -51,7 +52,18 @@ class EquipmentType extends AbstractType
                 'csrf_field_name' => '_token',
                 // a unique key to help generate the secret token
                 //'intention' => 'task_item',
+               /* 'validation_groups' => function (FormInterface $form) {
+                    $data = $form->getData();
+                    dump($data->getDestinations()->getType());
+                    if (0 === $data->getType()) {
+                        return array('address');
+                    } else {
+                        return array('latitude');
+                    }
+                },*/
+               // 'validation_groups' => array('address')
             )
+
         );
     }
 

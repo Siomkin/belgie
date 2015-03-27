@@ -1,15 +1,15 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content -%}
-    <h1>Region creation</h1>
+    <h1>Добавить регион</h1>
 
     {{ form(form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('region') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('region') }}">
+                Назад к списку
+            </a>
+        </li>
+    </ul>
 {% endblock %}

@@ -35,6 +35,7 @@ class EquipmentTypeController extends Controller
             'entities' => $entities,
         );
     }
+
     /**
      * Creates a new EquipmentType entity.
      *
@@ -58,7 +59,7 @@ class EquipmentTypeController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -71,12 +72,16 @@ class EquipmentTypeController extends Controller
      */
     private function createCreateForm(EquipmentType $entity)
     {
-        $form = $this->createForm(new EquipmentTypeType(), $entity, array(
-            'action' => $this->generateUrl('equipmenttype_create'),
-            'method' => 'POST',
-        ));
+        $form = $this->createForm(
+            new EquipmentTypeType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('equipmenttype_create'),
+                'method' => 'POST'
+            )
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Добавить'));
 
         return $form;
     }
@@ -91,11 +96,11 @@ class EquipmentTypeController extends Controller
     public function newAction()
     {
         $entity = new EquipmentType();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -119,8 +124,8 @@ class EquipmentTypeController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'entity' => $entity,
+            'delete_form' => $deleteForm->createView()
         );
     }
 
@@ -145,30 +150,35 @@ class EquipmentTypeController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a EquipmentType entity.
-    *
-    * @param EquipmentType $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a EquipmentType entity.
+     *
+     * @param EquipmentType $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(EquipmentType $entity)
     {
-        $form = $this->createForm(new EquipmentTypeType(), $entity, array(
-            'action' => $this->generateUrl('equipmenttype_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+        $form = $this->createForm(
+            new EquipmentTypeType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('equipmenttype_update', array('id' => $entity->getId())),
+                'method' => 'PUT'
+            )
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Обновить'));
 
         return $form;
     }
+
     /**
      * Edits an existing EquipmentType entity.
      *
@@ -197,11 +207,12 @@ class EquipmentTypeController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a EquipmentType entity.
      *
@@ -240,8 +251,7 @@ class EquipmentTypeController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('equipmenttype_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->add('submit', 'submit', array('label' => 'Удалить'))
+            ->getForm();
     }
 }
