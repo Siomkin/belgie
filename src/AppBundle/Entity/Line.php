@@ -352,4 +352,9 @@ class Line
     {
         return $this->destinationsEnd;
     }
+
+    public function __toString()
+    {
+        return $this->getCode().' ('.$this->getName().')';
+    }
 }

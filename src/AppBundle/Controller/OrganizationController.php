@@ -2,13 +2,17 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Organization;
+use AppBundle\Form\OrganizationCanalType;
+use AppBundle\Form\OrganizationEquipmentType;
+use AppBundle\Form\OrganizationLineType;
+use AppBundle\Form\OrganizationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use AppBundle\Entity\Organization;
-use AppBundle\Form\OrganizationType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Organization controller.
@@ -180,6 +184,79 @@ class OrganizationController extends Controller
     }
 
     /**
+     * Creates a form to edit a Organization entity.
+     *
+     * @param Organization $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEqipmentsForm(Organization $entity, $equipments = array())
+    {
+        $form = $this->createForm(
+            new OrganizationEquipmentType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('organization_equipments', array('id' => $entity->getId())),
+                'method' => 'PUT',
+                'data' => $equipments
+            )
+        );
+
+        $form->add('submit', 'submit', array('label' => 'Сохранить'));
+
+        return $form;
+    }
+
+    /**
+     * Creates a form to edit a Organization entity.
+     *
+     * @param Organization $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createLinesForm(Organization $entity, $lines = array())
+    {
+        $form = $this->createForm(
+            new OrganizationLineType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('organization_lines', array('id' => $entity->getId())),
+                'method' => 'PUT',
+                'data' => $lines
+            )
+        );
+
+        $form->add('submit', 'submit', array('label' => 'Сохранить'));
+
+        return $form;
+    }
+
+    /**
+     * Creates a form to edit a Organization entity.
+     *
+     * @param Organization $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCanalsForm(Organization $entity, $canals = array())
+    {
+        $form = $this->createForm(
+            new OrganizationCanalType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('organization_canals', array('id' => $entity->getId())),
+                'method' => 'PUT',
+                'data' => $canals
+            )
+        );
+
+        $form->add('submit', 'submit', array('label' => 'Сохранить'));
+
+        return $form;
+    }
+
+
+    /**
      * Edits an existing Organization entity.
      *
      * @Route("/{id}", name="organization_update")
@@ -253,5 +330,162 @@ class OrganizationController extends Controller
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Удалить'))
             ->getForm();
+    }
+
+
+    /**
+     * Edits an existing Organization entity.
+     *
+     * @Route("/{id}/equipments", name="organization_equipments")
+     *
+     * @Template("AppBundle:Organization:equipments.html.twig")
+     */
+    public function equipmentsAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:Organization')->find($id);
+        $equipmentsCol = $em->getRepository('AppBundle:Equipment')->findAll();
+        foreach ($equipmentsCol as $equipment) {
+            $equipments[$equipment->getExtId()] = $equipment->getCode();
+        }
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Organization entity.');
+        }
+
+        $editForm = $this->createEqipmentsForm($entity, $equipments);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $entity->setEquipments(json_encode($editForm->get('equipments')->getData()));
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('organization_equipments', array('id' => $id)));
+        } else {
+            $editForm->get('equipments')->submit(json_decode($entity->getEquipments()));
+        }
+
+        return array(
+            'entity' => $entity,
+            'edit_form' => $editForm->createView()
+        );
+    }
+
+    /**
+     * Edits an existing Organization entity.
+     *
+     * @Route("/{id}/lines", name="organization_lines")
+     *
+     * @Template("AppBundle:Organization:lines.html.twig")
+     */
+    public function linesAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:Organization')->find($id);
+        $linesCol = $em->getRepository('AppBundle:Line')->findAll();
+        foreach ($linesCol as $line) {
+            $lines[$line->getExtId()] = $line->getName();
+        }
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Organization entity.');
+        }
+
+        $editForm = $this->createLinesForm($entity, $lines);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $entity->setLines(json_encode($editForm->get('lines')->getData()));
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('organization_lines', array('id' => $id)));
+        } else {
+            $editForm->get('lines')->submit(json_decode($entity->getLines()));
+        }
+
+        return array(
+            'entity' => $entity,
+            'edit_form' => $editForm->createView()
+        );
+    }
+
+    /**
+     * Edits an existing Organization entity.
+     *
+     * @Route("/{id}/canals", name="organization_canals")
+     *
+     * @Template("AppBundle:Organization:canals.html.twig")
+     */
+    public function canalsAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:Organization')->find($id);
+        $canalsCol = $em->getRepository('AppBundle:Canal')->findAll();
+        foreach ($canalsCol as $canal) {
+            $canals[$canal->getExtId()] = $canal->getName();
+        }
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Organization entity.');
+        }
+
+        $editForm = $this->createCanalsForm($entity, $canals);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $entity->setCanals(json_encode($editForm->get('canals')->getData()));
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('organization_canals', array('id' => $id)));
+        } else {
+            $editForm->get('canals')->submit(json_decode($entity->getCanals()));
+        }
+
+        return array(
+            'entity' => $entity,
+            'edit_form' => $editForm->createView()
+        );
+    }
+
+    /**
+     * Edits an existing Organization entity.
+     *
+     * @Route("/{id}/download", name="organization_download")
+     *
+     * @Template("AppBundle:Organization:download.xml.twig")
+     */
+    public function downloadAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppBundle:Organization')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Organization entity.');
+        }
+
+        $equipments = $em->getRepository('AppBundle:Equipment')->findByExtId(
+            json_decode($entity->getEquipments())
+        );
+        $lines = $em->getRepository('AppBundle:Line')->findByExtId(json_decode($entity->getLines()));
+        $canals = $em->getRepository('AppBundle:Canal')->findByExtId(json_decode($entity->getCanals()));
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'xml');
+
+        return $this->render(
+            'AppBundle:Organization:download.xml.twig',
+            array(
+                'entity' => $entity,
+                'equipments' => $equipments,
+                'lines' => $lines,
+                'canals' => $canals
+            ),
+            $response
+        );
+
     }
 }

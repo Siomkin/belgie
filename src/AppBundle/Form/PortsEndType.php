@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class PortsType extends AbstractType
+class PortsEndType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -45,7 +45,7 @@ class PortsType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'AppBundle\Entity\Ports'
+                'data_class' => 'AppBundle\Entity\PortsEnd'
             )
         );
     }
@@ -55,6 +55,6 @@ class PortsType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_ports';
+        return 'appbundle_ports_end';
     }
 }

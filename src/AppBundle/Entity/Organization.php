@@ -29,6 +29,21 @@ class Organization
      */
     private $name;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="equipments", type="text", nullable=true)
+     */
+    private $equipments;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="org_lines", type="text", nullable=true)
+     */
+    private $lines;
+
     /**
      * @var string
      *
@@ -69,6 +84,54 @@ class Organization
     {
         return $this->name;
     }
+
+
+    /**
+     * Set equipments
+     *
+     * @param string $equipments
+     * @return Organization
+     */
+    public function setEquipments($equipments)
+    {
+        $this->equipments = $equipments;
+
+        return $this;
+    }
+
+    /**
+     * Get equipments
+     *
+     * @return string
+     */
+    public function getEquipments()
+    {
+        return $this->equipments;
+    }
+
+    /**
+     * Set lines
+     *
+     * @param string $lines
+     * @return Organization
+     */
+    public function setLines($lines)
+    {
+        $this->lines = $lines;
+
+        return $this;
+    }
+
+    /**
+     * Get lines
+     *
+     * @return string
+     */
+    public function getLines()
+    {
+        return $this->lines;
+    }
+
 
     /**
      * Set canals

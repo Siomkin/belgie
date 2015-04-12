@@ -30,14 +30,14 @@ class Destinations
 
     /**
      * @var integer
-     * @Assert\NotNull(groups={"address"})
+     * @Assert\NotBlank(groups={"address"})
      * @ORM\Column(name="address_index", type="integer", nullable=true)
      */
     private $addressIndex = '212000';
 
     /**
      * @var string
-     * @Assert\NotNull(groups={"address"})
+     * @Assert\NotBlank(groups={"address"})
      * @ORM\Column(name="address_building_number", type="string", length=10, nullable=true)
      */
     private $addressBuildingNumber;
@@ -51,42 +51,42 @@ class Destinations
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(groups={"latitude"})
      * @ORM\Column(name="latitude_deg", type="string", length=3, nullable=true)
      */
     private $latitudeDeg;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(groups={"latitude"})
      * @ORM\Column(name="latitude_min", type="string", length=3, nullable=true)
      */
     private $latitudeMin;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(groups={"latitude"})
      * @ORM\Column(name="latitude_sec", type="string", length=3, nullable=true)
      */
     private $latitudeSec;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(groups={"latitude"})
      * @ORM\Column(name="longitude_deg", type="string", length=3, nullable=true)
      */
     private $longitudeDeg;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(groups={"latitude"})
      * @ORM\Column(name="longitude_min", type="string", length=3, nullable=true)
      */
     private $longitudeMin;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(groups={"latitude"})
      * @ORM\Column(name="longitude_sec", type="string", length=3, nullable=true)
      */
     private $longitudeSec;

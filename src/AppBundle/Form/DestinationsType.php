@@ -19,7 +19,7 @@ class DestinationsType extends AbstractType
             ->add('type', null, array('label' => 'Координаты'))
             ->add('addressCity', null, array('label' => '* Населенный пункт:'))
             ->add('addressRegion', null, array('label' => '* Область, район:'))
-            ->add('addressStreet', null, array('label' => '* Улица:'))
+            ->add('addressStreet', null, array('label' => '* Улица:','empty_data' => null,'placeholder' => 'Выберите'))
             ->add('addressIndex', null, array('label' => '* Индекс:'))
             ->add('addressBuildingNumber', null, array('label' => '* № Дома-корпус:'))
             ->add('addressOfficeNumber', null, array('label' => '№ Офиса, комнаты или квартиры:'))
@@ -39,8 +39,8 @@ class DestinationsType extends AbstractType
         $resolver->setDefaults(
             array(
                 'data_class' => 'AppBundle\Entity\Destinations',
-               // 'validation_groups' => array('address'),
-                'validation_groups' => function(FormInterface $form) {
+                // 'validation_groups' => array('address'),
+                'validation_groups' => function (FormInterface $form) {
                     $data = $form->getData();
 
                     if (0 == $data->getType()) {

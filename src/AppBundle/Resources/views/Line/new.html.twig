@@ -90,13 +90,13 @@
                 $('#appbundle_line_destinationsEnd_type').change(function () {
                     if ($(this).is(':checked')) {
                         console.log('check');
-                        $('#destinationsEnd.address').hide();
-                        $('#destinationsEnd.coords').show();
+                        $('#destinationsEnd .address').hide();
+                        $('#destinationsEnd .coords').show();
                     }
                     else {
                         console.log('uncheck');
-                        $('#destinationsEnd.address').show();
-                        $('#destinationsEnd.coords').hide();
+                        $('#destinationsEnd .address').show();
+                        $('#destinationsEnd .coords').hide();
                     }
                 });
             });

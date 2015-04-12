@@ -8,10 +8,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Ports
  *
- * @ORM\Table(name="ports")
+ * @ORM\Table(name="ports_end")
  * @ORM\Entity
  */
-class Ports
+class PortsEnd
 {
     /**
      * @var integer
@@ -53,7 +53,7 @@ class Ports
     /**
      * @var \Ports
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Canal", inversedBy="beginPorts", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Canal", inversedBy="endPorts", cascade={"persist"})
      * @ORM\JoinColumn(name="canal_id", referencedColumnName="ext_id")
      */
     private $canal;
@@ -182,4 +182,5 @@ class Ports
     {
         return $this->canal;
     }
+
 }

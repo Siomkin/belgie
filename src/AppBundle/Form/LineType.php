@@ -21,14 +21,20 @@ class LineType extends AbstractType
             ->add('cableType', null, array('label' => '* Тип:'))
             ->add('cableMark', null, array('label' => '* Маркировка:'))
             ->add('cableCap', null, array('label' => '* Емкость:'))
-            ->add('capacity', null, array('label' => '* Задействованная емкость кабеля:'))
+            ->add('capacity', null, array('label' => '* Задействов. емкость кабеля:'))
             ->add('isActiveSw', null, array('label' => 'Активный'))
             ->add(
                 'destinationsBegin',
-                new DestinationsType()
+                new DestinationsType(),
+                array(
+                    'required' => false
+                )
             )->add(
                 'destinationsEnd',
-                new DestinationsType()
+                new DestinationsType(),
+                array(
+                    'required' => false
+                )
             );
 
     }
@@ -40,7 +46,8 @@ class LineType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'AppBundle\Entity\Line'
+                'data_class' => 'AppBundle\Entity\Line',
+                'cascade_validation' => true
             )
         );
     }

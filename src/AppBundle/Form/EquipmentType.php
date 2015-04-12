@@ -4,7 +4,6 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class EquipmentType extends AbstractType
@@ -32,9 +31,12 @@ class EquipmentType extends AbstractType
              )*/
             ->add(
                 'destinations',
-                new DestinationsType()
+                new DestinationsType(),
+                array(
+                    'required' => false
+                )
             )
-            ->add('type', null, array('label' => '* Тип оборудования по назначению:'))
+            ->add('type', null, array('label' => '* Тип оборуд. по назначению:'))
             ->add('isActiveSw', null, array('label' => 'Активный'));
     }
 
@@ -52,16 +54,16 @@ class EquipmentType extends AbstractType
                 'csrf_field_name' => '_token',
                 // a unique key to help generate the secret token
                 //'intention' => 'task_item',
-               /* 'validation_groups' => function (FormInterface $form) {
-                    $data = $form->getData();
-                    dump($data->getDestinations()->getType());
-                    if (0 === $data->getType()) {
-                        return array('address');
-                    } else {
-                        return array('latitude');
-                    }
-                },*/
-               // 'validation_groups' => array('address')
+                /* 'validation_groups' => function (FormInterface $form) {
+                     $data = $form->getData();
+                     dump($data->getDestinations()->getType());
+                     if (0 === $data->getType()) {
+                         return array('address');
+                     } else {
+                         return array('latitude');
+                     }
+                 },*/
+                // 'validation_groups' => array('address')
             )
 
         );

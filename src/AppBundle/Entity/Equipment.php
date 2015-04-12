@@ -3,8 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Equipment
@@ -58,7 +58,7 @@ class Equipment
 
     /**
      * @var \Destinations
-     *
+     * @Assert\NotNull()
      * @ORM\OneToOne(targetEntity="Destinations", cascade={"persist", "remove"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="destinations_id", referencedColumnName="id", onDelete="CASCADE")
@@ -68,7 +68,7 @@ class Equipment
 
     /**
      * @var \EquipmentType
-     *
+     * @Assert\NotNull()
      * @ORM\ManyToOne(targetEntity="EquipmentType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="type_id", referencedColumnName="id")
@@ -230,5 +230,10 @@ class Equipment
     public function getType()
     {
         return $this->type;
+    }
+
+    public function __toString()
+    {
+        return $this->getCode().' - '.$this->getVendor().' '.$this->getModel();
     }
 }

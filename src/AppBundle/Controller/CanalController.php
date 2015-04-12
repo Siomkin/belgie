@@ -2,13 +2,14 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Canal;
+use AppBundle\Form\CanalType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use AppBundle\Entity\Canal;
-use AppBundle\Form\CanalType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Canal controller.
@@ -35,6 +36,7 @@ class CanalController extends Controller
             'entities' => $entities,
         );
     }
+
     /**
      * Creates a new Canal entity.
      *
@@ -53,12 +55,12 @@ class CanalController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('canal_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('canal'));
         }
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -71,12 +73,16 @@ class CanalController extends Controller
      */
     private function createCreateForm(Canal $entity)
     {
-        $form = $this->createForm(new CanalType(), $entity, array(
-            'action' => $this->generateUrl('canal_create'),
-            'method' => 'POST',
-        ));
+        $form = $this->createForm(
+            new CanalType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('canal_create'),
+                'method' => 'POST',
+            )
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Добавить'));
 
         return $form;
     }
@@ -91,11 +97,11 @@ class CanalController extends Controller
     public function newAction()
     {
         $entity = new Canal();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -119,7 +125,7 @@ class CanalController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -145,30 +151,35 @@ class CanalController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a Canal entity.
-    *
-    * @param Canal $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Canal entity.
+     *
+     * @param Canal $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Canal $entity)
     {
-        $form = $this->createForm(new CanalType(), $entity, array(
-            'action' => $this->generateUrl('canal_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+        $form = $this->createForm(
+            new CanalType(),
+            $entity,
+            array(
+                'action' => $this->generateUrl('canal_update', array('id' => $entity->getExtId())),
+                'method' => 'PUT',
+            )
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Обновить'));
 
         return $form;
     }
+
     /**
      * Edits an existing Canal entity.
      *
@@ -186,22 +197,55 @@ class CanalController extends Controller
             throw $this->createNotFoundException('Unable to find Canal entity.');
         }
 
+        //BeginPorts
+        $originalBeginPorts = new ArrayCollection();
+
+        // Create an ArrayCollection of the current Tag objects in the database
+        foreach ($entity->getBeginPorts() as $beginPorts) {
+            $originalBeginPorts->add($beginPorts);
+        }
+
+        //EndPorts
+        $originalEndPorts = new ArrayCollection();
+
+        // Create an ArrayCollection of the current Tag objects in the database
+        foreach ($entity->getEndPorts() as $endPorts) {
+            $originalEndPorts->add($endPorts);
+        }
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            // remove the relationship between the tag and the Task
+            foreach ($originalBeginPorts as $beginPort) {
+                if (false === $entity->getBeginPorts()->contains($beginPort)) {
+                    $beginPort->setCanal(null);
+                    $em->persist($beginPort);
+                    $em->remove($beginPort);
+                }
+            }
+            foreach ($originalEndPorts as $endPort) {
+                if (false === $entity->getEndPorts()->contains($endPort)) {
+                    $endPort->setCanal(null);
+                    $em->persist($endPort);
+                    $em->remove($endPort);
+                }
+            }
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('canal_edit', array('id' => $id)));
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
+
     /**
      * Deletes a Canal entity.
      *
@@ -240,8 +284,8 @@ class CanalController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('canal_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->add('submit', 'submit', array('label' => 'Удалить'))
+            ->add('submit', 'submit', array('label' => 'Удалить'))
+            ->getForm();
     }
 }

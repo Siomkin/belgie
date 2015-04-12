@@ -1,0 +1,15 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block content -%}
+    <h1>Список линий</h1>
+
+    {{ form(edit_form) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('organization') }}">
+                назад к списку
+            </a>
+        </li>
+    </ul>
+{% endblock %}
