@@ -1,0 +1,120 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Добавление линии</h1>
+
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    <div>{{ form_errors(form) }}</div>
+    <div class="form-group">
+        {{ form_label(form.name, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.name) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.name) }}</div>
+    </div>
+    <div class="form-group">
+        {{ form_label(form.code, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.code) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.code) }}</div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.nodeLength, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">
+            <div class="input-group">{{ form_widget(form.nodeLength) }}
+                <div class="input-group-addon">м</div>
+            </div>
+        </div>
+        <div class="col-xs-12">{{ form_errors(form.nodeLength) }}</div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.cableType, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.cableType) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.cableType) }}</div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.cableMark, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.cableMark) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.cableMark) }}</div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.cableCap, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.cableCap) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.cableCap) }}</div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.capacity, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-xs-6">{{ form_widget(form.capacity) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.capacity) }}</div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.isActiveSw, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+        <div class="col-sm-offset-2 col-xs-6">{{ form_widget(form.isActiveSw) }}</div>
+        <div class="col-xs-12">{{ form_errors(form.isActiveSw) }}</div>
+    </div>
+
+    <h3>Расположение начального узла линии</h3>
+
+    <div class="form-group">
+        <div id="destinationsBegin">
+            {{ include('@App/Destinations/_form.html.twig', {'form': form.destinationsBegin}) }}
+        </div>
+        <script>
+            jQuery(document).ready(function ($) {
+                $('#appbundle_line_destinationsBegin_type').change(function () {
+                    if ($(this).is(':checked')) {
+                        console.log('check');
+                        $('#destinationsBegin .address').hide();
+                        $('#destinationsBegin .coords').show();
+                    }
+                    else {
+                        console.log('uncheck');
+                        $('#destinationsBegin .address').show();
+                        $('#destinationsBegin .coords').hide();
+                    }
+                });
+            });
+        </script>
+    </div>
+    <h3>Расположение конечного узла линии</h3>
+
+    <div class="form-group">
+        <div id="destinationsEnd">
+            {{ include('@App/Destinations/_form.html.twig', {'form': form.destinationsEnd}) }}
+        </div>
+        <script>
+            jQuery(document).ready(function ($) {
+                $('#appbundle_line_destinationsEnd_type').change(function () {
+                    if ($(this).is(':checked')) {
+                        console.log('check');
+                        $('#destinationsEnd .address').hide();
+                        $('#destinationsEnd .coords').show();
+                    }
+                    else {
+                        console.log('uncheck');
+                        $('#destinationsEnd .address').show();
+                        $('#destinationsEnd .coords').hide();
+                    }
+                });
+            });
+        </script>
+    </div>
+
+
+    {{ form_row(form.submit, { 'label': 'Сохранить','attr': {'class': 'col-sm-offset-2 btn-default'} }) }}
+
+    {{ form_rest(form) }}
+
+    {{ form_end(form) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('line') }}">
+                Назад к списку
+            </a>
+        </li>
+    </ul>
+{% endblock %}

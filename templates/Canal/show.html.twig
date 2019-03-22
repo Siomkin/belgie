@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Canal</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Isactivesw</th>
+                <td>{{ entity.isActiveSw }}</td>
+            </tr>
+            <tr>
+                <th>Extid</th>
+                <td>{{ entity.extId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('canal') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('canal_edit', { 'id': entity.extId }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

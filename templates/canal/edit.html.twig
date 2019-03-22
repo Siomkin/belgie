@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <h1>Edit Canal</h1>
+
+    {{ include('canal/_form.html.twig', {form: form, 'button_label': 'Update'}) }}
+
+    <a href="{{ path('canal') }}">back to list</a>
+{{ dump(canal) }}
+    {#{{ include('canal/_delete_form.html.twig', {canal: canal})}}#}
+{% endblock %}
