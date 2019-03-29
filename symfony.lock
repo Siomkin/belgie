@@ -111,6 +111,9 @@
     "psr/simple-cache": {
         "version": "1.0.1"
     },
+    "roave/security-advisories": {
+        "version": "dev-master"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -121,6 +124,18 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "sensiolabs/security-checker": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.0",
+            "ref": "05daf6b214e54aed4089f3480f944a67ac3a7889"
+        },
+        "files": [
+            "config/packages/security_checker.yaml"
         ]
     },
     "symfony/asset": {
@@ -421,6 +436,12 @@
         "files": [
             "config/packages/html_sanitizer.yaml"
         ]
+    },
+    "thomas-schulz/doctrine-phpstorm-meta": {
+        "version": "v1.2.1"
+    },
+    "thomas-schulz/symfony-meta": {
+        "version": "v1.2.1"
     },
     "white-october/pagerfanta-bundle": {
         "version": "v1.2.4"

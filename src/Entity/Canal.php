@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Canal
+ * Canal.
  *
  * @ORM\Table(name="canal", indexes={@ORM\Index(name="fk_canal_equipment_1", columns={"begin_equip_id"}), @ORM\Index(name="fk_canal_equipment_2", columns={"end_equip_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\CanalRepository")
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Canal
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="ext_id", type="integer", nullable=false)
      * @ORM\Id
@@ -29,7 +29,7 @@ class Canal
     private $name;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="is_active_sw", type="boolean", nullable=false)
      */
@@ -69,7 +69,6 @@ class Canal
      */
     private $endPorts;
 
-
     /**
      * @var Line
      *
@@ -89,9 +88,9 @@ class Canal
     }
 
     /**
-     * Get extId
+     * Get extId.
      *
-     * @return integer
+     * @return int
      */
     public function getExtId()
     {
@@ -99,9 +98,10 @@ class Canal
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Canal
      */
     public function setName($name)
@@ -112,7 +112,7 @@ class Canal
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -122,9 +122,10 @@ class Canal
     }
 
     /**
-     * Set isActiveSw
+     * Set isActiveSw.
      *
-     * @param boolean $isActiveSw
+     * @param bool $isActiveSw
+     *
      * @return Canal
      */
     public function setIsActiveSw($isActiveSw)
@@ -135,9 +136,9 @@ class Canal
     }
 
     /**
-     * Get isActiveSw
+     * Get isActiveSw.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsActiveSw()
     {
@@ -145,9 +146,10 @@ class Canal
     }
 
     /**
-     * Set beginEquip
+     * Set beginEquip.
      *
      * @param Equipment $beginEquip
+     *
      * @return Canal
      */
     public function setBeginEquip(Equipment $beginEquip = null)
@@ -158,7 +160,7 @@ class Canal
     }
 
     /**
-     * Get beginEquip
+     * Get beginEquip.
      *
      * @return Equipment
      */
@@ -168,9 +170,10 @@ class Canal
     }
 
     /**
-     * Set endEquip
+     * Set endEquip.
      *
      * @param Equipment $endEquip
+     *
      * @return Canal
      */
     public function setEndEquip(Equipment $endEquip = null)
@@ -181,7 +184,7 @@ class Canal
     }
 
     /**
-     * Get endEquip
+     * Get endEquip.
      *
      * @return Equipment
      */
@@ -191,9 +194,10 @@ class Canal
     }
 
     /**
-     * Set lines
+     * Set lines.
      *
      * @param Line $lines
+     *
      * @return Canal
      */
     public function setLines(Line $lines = null)
@@ -204,7 +208,7 @@ class Canal
     }
 
     /**
-     * Get lines
+     * Get lines.
      *
      * @return Line
      */
@@ -214,14 +218,14 @@ class Canal
     }
 
     /**
-     * Set ports
+     * Set ports.
      *
      * @param \App\Entity\Ports $ports
+     *
      * @return Canal
      */
     public function setBeginPorts($ports = null)
     {
-
         foreach ($ports as $port) {
             $port->setCanal($this);
         }
@@ -231,7 +235,7 @@ class Canal
     }
 
     /**
-     * Get lines
+     * Get lines.
      *
      * @return Ports
      */
@@ -241,9 +245,10 @@ class Canal
     }
 
     /**
-     * Set ports
+     * Set ports.
      *
      * @param \App\Entity\Ports $ports
+     *
      * @return Canal
      */
     public function setEndPorts($ports = null)
@@ -257,7 +262,7 @@ class Canal
     }
 
     /**
-     * Get lines
+     * Get lines.
      *
      * @return Ports
      */
@@ -274,9 +279,9 @@ class Canal
     /**
      * @return array
      */
-    static public function getPortInterfaces()
+    public static function getPortInterfaces()
     {
-        $data = array(
+        $data = [
             '26' => 'V.24',
             '27' => 'V.35',
             '28' => 'V.36',
@@ -305,19 +310,18 @@ class Canal
             '51' => 'DWDM',
             '60' => 'DOCSIS',
             '61' => 'EuroDOCSIS',
-        );
+        ];
 
         return $data;
     }
 
     /**
      * @param $id
-     * @return mixed
      */
-    static public function getPortInterface($id)
+    public static function getPortInterface($id)
     {
         $interfaces = self::getPortInterfaces();
-        if (array_key_exists($id, $interfaces)) {
+        if (\array_key_exists($id, $interfaces)) {
             return $interfaces[$id];
         }
     }
@@ -325,27 +329,25 @@ class Canal
     /**
      * @return array
      */
-    static public function getPortSpeedTypes()
+    public static function getPortSpeedTypes()
     {
-        $data = array(
+        $data = [
             '0' => '--',
             '1' => 'kB',
             '2' => 'MB',
             '3' => 'GB',
-        );
+        ];
 
         return $data;
     }
 
-
     /**
      * @param $id
-     * @return mixed
      */
-    static public function getPortSpeedType($id)
+    public static function getPortSpeedType($id)
     {
         $interfaces = self::getPortSpeedTypes();
-        if (array_key_exists($id, $interfaces)) {
+        if (\array_key_exists($id, $interfaces)) {
             return $interfaces[$id];
         }
     }

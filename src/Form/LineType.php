@@ -6,50 +6,41 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
 class LineType extends AbstractType
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, array('label' => '* Наименование линии:'))
-            ->add('code', null, array('label' => '* Внутренний идентификатор(код):'))
-            ->add('nodeLength', null, array('label' => '* Протяженность участка между узлами:'))
-            ->add('cableType', null, array('label' => '* Тип:'))
-            ->add('cableMark', null, array('label' => '* Маркировка:'))
-            ->add('cableCap', null, array('label' => '* Емкость:'))
-            ->add('capacity', null, array('label' => '* Задействов. емкость кабеля:'))
-            ->add('isActiveSw', null, array('label' => 'Активный'))
+            ->add('name', null, ['label' => '* Наименование линии:'])
+            ->add('code', null, ['label' => '* Внутренний идентификатор(код):'])
+            ->add('nodeLength', null, ['label' => '* Протяженность участка между узлами:'])
+            ->add('cableType', null, ['label' => '* Тип:'])
+            ->add('cableMark', null, ['label' => '* Маркировка:'])
+            ->add('cableCap', null, ['label' => '* Емкость:'])
+            ->add('capacity', null, ['label' => '* Задействов. емкость кабеля:'])
+            ->add('isActiveSw', null, ['label' => 'Активный'])
             ->add(
                 'destinationsBegin',
                 new DestinationsType(),
-                array(
-                    'required' => false
-                )
+                [
+                    'required' => false,
+                ]
             )->add(
                 'destinationsEnd',
                 new DestinationsType(),
-                array(
-                    'required' => false
-                )
+                [
+                    'required' => false,
+                ]
             );
-
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
-            array(
+            [
                 'data_class' => 'App\Entity\Line',
-                'cascade_validation' => true
-            )
+                'cascade_validation' => true,
+            ]
         );
     }
 

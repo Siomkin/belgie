@@ -8,12 +8,12 @@ use App\Form\OrganizationEquipmentType;
 use App\Form\OrganizationLineType;
 use App\Form\OrganizationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Organization controller.
@@ -23,7 +23,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class OrganizationController extends AbstractController
 {
-
     /**
      * Lists all Organization entities.
      *
@@ -37,9 +36,9 @@ class OrganizationController extends AbstractController
 
         $entities = $em->getRepository('App:Organization')->findAll();
 
-        return array(
-            'entities' => $entities
-        );
+        return [
+            'entities' => $entities,
+        ];
     }
 
     /**
@@ -60,13 +59,13 @@ class OrganizationController extends AbstractController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('organization_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('organization_show', ['id' => $entity->getId()]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
-            'form' => $form->createView()
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
@@ -81,13 +80,13 @@ class OrganizationController extends AbstractController
         $form = $this->createForm(
             new OrganizationType(),
             $entity,
-            array(
+            [
                 'action' => $this->generateUrl('organization_create'),
-                'method' => 'POST'
-            )
+                'method' => 'POST',
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Добавить'));
+        $form->add('submit', 'submit', ['label' => 'Добавить']);
 
         return $form;
     }
@@ -104,10 +103,10 @@ class OrganizationController extends AbstractController
         $entity = new Organization();
         $form = $this->createCreateForm($entity);
 
-        return array(
+        return [
             'entity' => $entity,
-            'form' => $form->createView()
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
@@ -129,10 +128,10 @@ class OrganizationController extends AbstractController
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return [
             'entity' => $entity,
-            'delete_form' => $deleteForm->createView()
-        );
+            'delete_form' => $deleteForm->createView(),
+        ];
     }
 
     /**
@@ -155,11 +154,11 @@ class OrganizationController extends AbstractController
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
-        );
+            'delete_form' => $deleteForm->createView(),
+        ];
     }
 
     /**
@@ -174,13 +173,13 @@ class OrganizationController extends AbstractController
         $form = $this->createForm(
             new OrganizationType(),
             $entity,
-            array(
-                'action' => $this->generateUrl('organization_update', array('id' => $entity->getId())),
-                'method' => 'PUT'
-            )
+            [
+                'action' => $this->generateUrl('organization_update', ['id' => $entity->getId()]),
+                'method' => 'PUT',
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Обновить'));
+        $form->add('submit', 'submit', ['label' => 'Обновить']);
 
         return $form;
     }
@@ -192,19 +191,19 @@ class OrganizationController extends AbstractController
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createEqipmentsForm(Organization $entity, $equipments = array())
+    private function createEqipmentsForm(Organization $entity, $equipments = [])
     {
         $form = $this->createForm(
             new OrganizationEquipmentType(),
             $entity,
-            array(
-                'action' => $this->generateUrl('organization_equipments', array('id' => $entity->getId())),
+            [
+                'action' => $this->generateUrl('organization_equipments', ['id' => $entity->getId()]),
                 'method' => 'PUT',
-                'data' => $equipments
-            )
+                'data' => $equipments,
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Сохранить'));
+        $form->add('submit', 'submit', ['label' => 'Сохранить']);
 
         return $form;
     }
@@ -216,19 +215,19 @@ class OrganizationController extends AbstractController
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createLinesForm(Organization $entity, $lines = array())
+    private function createLinesForm(Organization $entity, $lines = [])
     {
         $form = $this->createForm(
             new OrganizationLineType(),
             $entity,
-            array(
-                'action' => $this->generateUrl('organization_lines', array('id' => $entity->getId())),
+            [
+                'action' => $this->generateUrl('organization_lines', ['id' => $entity->getId()]),
                 'method' => 'PUT',
-                'data' => $lines
-            )
+                'data' => $lines,
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Сохранить'));
+        $form->add('submit', 'submit', ['label' => 'Сохранить']);
 
         return $form;
     }
@@ -240,23 +239,22 @@ class OrganizationController extends AbstractController
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCanalsForm(Organization $entity, $canals = array())
+    private function createCanalsForm(Organization $entity, $canals = [])
     {
         $form = $this->createForm(
             new OrganizationCanalType(),
             $entity,
-            array(
-                'action' => $this->generateUrl('organization_canals', array('id' => $entity->getId())),
+            [
+                'action' => $this->generateUrl('organization_canals', ['id' => $entity->getId()]),
                 'method' => 'PUT',
-                'data' => $canals
-            )
+                'data' => $canals,
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Сохранить'));
+        $form->add('submit', 'submit', ['label' => 'Сохранить']);
 
         return $form;
     }
-
 
     /**
      * Edits an existing Organization entity.
@@ -282,14 +280,14 @@ class OrganizationController extends AbstractController
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('organization_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('organization_edit', ['id' => $id]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
-        );
+            'delete_form' => $deleteForm->createView(),
+        ];
     }
 
     /**
@@ -328,12 +326,11 @@ class OrganizationController extends AbstractController
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('organization_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('organization_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Удалить'))
+            ->add('submit', 'submit', ['label' => 'Удалить'])
             ->getForm();
     }
-
 
     /**
      * Edits an existing Organization entity.
@@ -363,15 +360,14 @@ class OrganizationController extends AbstractController
             $entity->setEquipments(json_encode($editForm->get('equipments')->getData()));
             $em->flush();
 
-            return $this->redirect($this->generateUrl('organization_equipments', array('id' => $id)));
-        } else {
-            $editForm->get('equipments')->submit(json_decode($entity->getEquipments()));
+            return $this->redirect($this->generateUrl('organization_equipments', ['id' => $id]));
         }
+        $editForm->get('equipments')->submit(json_decode($entity->getEquipments()));
 
-        return array(
+        return [
             'entity' => $entity,
-            'edit_form' => $editForm->createView()
-        );
+            'edit_form' => $editForm->createView(),
+        ];
     }
 
     /**
@@ -402,15 +398,14 @@ class OrganizationController extends AbstractController
             $entity->setLines(json_encode($editForm->get('lines')->getData()));
             $em->flush();
 
-            return $this->redirect($this->generateUrl('organization_lines', array('id' => $id)));
-        } else {
-            $editForm->get('lines')->submit(json_decode($entity->getLines()));
+            return $this->redirect($this->generateUrl('organization_lines', ['id' => $id]));
         }
+        $editForm->get('lines')->submit(json_decode($entity->getLines()));
 
-        return array(
+        return [
             'entity' => $entity,
-            'edit_form' => $editForm->createView()
-        );
+            'edit_form' => $editForm->createView(),
+        ];
     }
 
     /**
@@ -441,15 +436,14 @@ class OrganizationController extends AbstractController
             $entity->setCanals(json_encode($editForm->get('canals')->getData()));
             $em->flush();
 
-            return $this->redirect($this->generateUrl('organization_canals', array('id' => $id)));
-        } else {
-            $editForm->get('canals')->submit(json_decode($entity->getCanals()));
+            return $this->redirect($this->generateUrl('organization_canals', ['id' => $id]));
         }
+        $editForm->get('canals')->submit(json_decode($entity->getCanals()));
 
-        return array(
+        return [
             'entity' => $entity,
-            'edit_form' => $editForm->createView()
-        );
+            'edit_form' => $editForm->createView(),
+        ];
     }
 
     /**
@@ -480,14 +474,13 @@ class OrganizationController extends AbstractController
 
         return $this->render(
             'App:Organization:download.xml.twig',
-            array(
+            [
                 'entity' => $entity,
                 'equipments' => $equipments,
                 'lines' => $lines,
-                'canals' => $canals
-            ),
+                'canals' => $canals,
+            ],
             $response
         );
-
     }
 }

@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Entity\Ports;
 use App\Form\PortsType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Ports controller.
@@ -19,7 +19,6 @@ use App\Form\PortsType;
  */
 class PortsController extends AbstractController
 {
-
     /**
      * Lists all Ports entities.
      *
@@ -33,10 +32,11 @@ class PortsController extends AbstractController
 
         $entities = $em->getRepository('App:Ports')->findAll();
 
-        return array(
+        return [
             'entities' => $entities,
-        );
+        ];
     }
+
     /**
      * Creates a new Ports entity.
      *
@@ -55,13 +55,13 @@ class PortsController extends AbstractController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ports_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('ports_show', ['id' => $entity->getId()]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
@@ -73,12 +73,12 @@ class PortsController extends AbstractController
      */
     private function createCreateForm(Ports $entity)
     {
-        $form = $this->createForm(new PortsType(), $entity, array(
+        $form = $this->createForm(new PortsType(), $entity, [
             'action' => $this->generateUrl('ports_create'),
             'method' => 'POST',
-        ));
+        ]);
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', ['label' => 'Create']);
 
         return $form;
     }
@@ -93,12 +93,12 @@ class PortsController extends AbstractController
     public function newAction()
     {
         $entity = new Ports();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
-        return array(
+        return [
             'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
@@ -120,10 +120,10 @@ class PortsController extends AbstractController
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
-            'entity'      => $entity,
+        return [
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -146,31 +146,32 @@ class PortsController extends AbstractController
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+        return [
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
-    * Creates a form to edit a Ports entity.
-    *
-    * @param Ports $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Ports entity.
+     *
+     * @param Ports $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Ports $entity)
     {
-        $form = $this->createForm(new PortsType(), $entity, array(
-            'action' => $this->generateUrl('ports_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new PortsType(), $entity, [
+            'action' => $this->generateUrl('ports_update', ['id' => $entity->getId()]),
             'method' => 'PUT',
-        ));
+        ]);
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', ['label' => 'Update']);
 
         return $form;
     }
+
     /**
      * Edits an existing Ports entity.
      *
@@ -195,15 +196,16 @@ class PortsController extends AbstractController
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ports_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('ports_edit', ['id' => $id]));
         }
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+        return [
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
+
     /**
      * Deletes a Ports entity.
      *
@@ -240,9 +242,9 @@ class PortsController extends AbstractController
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('ports_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('ports_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', ['label' => 'Delete'])
             ->getForm()
         ;
     }

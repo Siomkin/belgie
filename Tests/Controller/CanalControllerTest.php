@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CanalControllerTest extends WebTestCase
 {
-    /*
     public function testCompleteScenario()
     {
         // Create a new client to browse the application
@@ -14,14 +13,14 @@ class CanalControllerTest extends WebTestCase
 
         // Create a new entry in the database
         $crawler = $client->request('GET', '/canal/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /canal/");
+        $this->assertSame(200, $client->getResponse()->getStatusCode(), 'Unexpected HTTP status code for GET /canal/');
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
-            'appbundle_canal[field_name]'  => 'Test',
+        $form = $crawler->selectButton('Create')->form([
+            'appbundle_canal[field_name]' => 'Test',
             // ... other fields to fill
-        ));
+        ]);
 
         $client->submit($form);
         $crawler = $client->followRedirect();
@@ -32,10 +31,10 @@ class CanalControllerTest extends WebTestCase
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
-        $form = $crawler->selectButton('Update')->form(array(
-            'appbundle_canal[field_name]'  => 'Foo',
+        $form = $crawler->selectButton('Update')->form([
+            'appbundle_canal[field_name]' => 'Foo',
             // ... other fields to fill
-        ));
+        ]);
 
         $client->submit($form);
         $crawler = $client->followRedirect();
@@ -50,6 +49,4 @@ class CanalControllerTest extends WebTestCase
         // Check the entity has been delete on the list
         $this->assertNotRegExp('/Foo/', $client->getResponse()->getContent());
     }
-
-    */
 }

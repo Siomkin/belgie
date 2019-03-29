@@ -7,7 +7,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Equipment
+ * Equipment.
  *
  * @ORM\Table(name="equipment",
  *  uniqueConstraints={@ORM\UniqueConstraint(name="uniq_code", columns={"code"})},
@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Equipment
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="ext_id", type="integer", nullable=false)
      * @ORM\Id
@@ -51,7 +51,7 @@ class Equipment
     private $model;
 
     /**
-     * @var boolean
+     * @var bool
      * @ORM\Column(name="is_active_sw", type="boolean", nullable=false)
      */
     private $isActiveSw = true;
@@ -76,18 +76,15 @@ class Equipment
      */
     private $type;
 
-    /**
-     *
-     */
     public function __construct()
     {
         $this->destinations = new Destinations();
     }
 
     /**
-     * Get extId
+     * Get extId.
      *
-     * @return integer
+     * @return int
      */
     public function getExtId()
     {
@@ -95,9 +92,10 @@ class Equipment
     }
 
     /**
-     * Set code
+     * Set code.
      *
      * @param string $code
+     *
      * @return Equipment
      */
     public function setCode($code)
@@ -108,7 +106,7 @@ class Equipment
     }
 
     /**
-     * Get code
+     * Get code.
      *
      * @return string
      */
@@ -118,9 +116,10 @@ class Equipment
     }
 
     /**
-     * Set vendor
+     * Set vendor.
      *
      * @param string $vendor
+     *
      * @return Equipment
      */
     public function setVendor($vendor)
@@ -131,7 +130,7 @@ class Equipment
     }
 
     /**
-     * Get vendor
+     * Get vendor.
      *
      * @return string
      */
@@ -141,9 +140,10 @@ class Equipment
     }
 
     /**
-     * Set model
+     * Set model.
      *
      * @param string $model
+     *
      * @return Equipment
      */
     public function setModel($model)
@@ -154,7 +154,7 @@ class Equipment
     }
 
     /**
-     * Get model
+     * Get model.
      *
      * @return string
      */
@@ -164,9 +164,10 @@ class Equipment
     }
 
     /**
-     * Set isActiveSw
+     * Set isActiveSw.
      *
-     * @param boolean $isActiveSw
+     * @param bool $isActiveSw
+     *
      * @return Equipment
      */
     public function setIsActiveSw($isActiveSw)
@@ -177,9 +178,9 @@ class Equipment
     }
 
     /**
-     * Get isActiveSw
+     * Get isActiveSw.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsActiveSw()
     {
@@ -187,9 +188,10 @@ class Equipment
     }
 
     /**
-     * Set destinations
+     * Set destinations.
      *
      * @param \App\Entity\Destinations $destinations
+     *
      * @return Equipment
      */
     public function setDestinationsBegin(\App\Entity\Destinations $destinations = null)
@@ -200,7 +202,7 @@ class Equipment
     }
 
     /**
-     * Get destinations
+     * Get destinations.
      *
      * @return \App\Entity\Destinations
      */
@@ -210,9 +212,10 @@ class Equipment
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param \App\Entity\EquipmentType $type
+     *
      * @return Equipment
      */
     public function setType(\App\Entity\EquipmentType $type = null)
@@ -223,7 +226,7 @@ class Equipment
     }
 
     /**
-     * Get type
+     * Get type.
      *
      * @return \App\Entity\EquipmentType
      */

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Region
+ * Region.
  *
  * @ORM\Table(name="region")
  * @ORM\Entity
@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Region
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -29,12 +29,10 @@ class Region
      */
     private $name;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -42,9 +40,10 @@ class Region
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Region
      */
     public function setName($name)
@@ -55,9 +54,9 @@ class Region
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {

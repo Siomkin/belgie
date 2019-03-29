@@ -60,9 +60,6 @@ class CanalController extends AbstractController
 
     /**
      * @Route("/{extId}/edit", name="canal_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param Canal $canal
-     * @return Response
      */
     public function edit(Request $request, Canal $canal): Response
     {

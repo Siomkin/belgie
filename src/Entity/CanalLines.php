@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CanalLines
+ * CanalLines.
  *
  * @ORM\Table(name="canal_lines", indexes={@ORM\Index(name="fk_canal_lines_canal_1", columns={"canal_id"}), @ORM\Index(name="fk_canal_lines_line_1", columns={"line_id"})})
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class CanalLines
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -41,12 +41,10 @@ class CanalLines
      */
     private $line;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -54,9 +52,10 @@ class CanalLines
     }
 
     /**
-     * Set canal
+     * Set canal.
      *
      * @param \App\Entity\Canal $canal
+     *
      * @return CanalLines
      */
     public function setCanal(\App\Entity\Canal $canal = null)
@@ -67,7 +66,7 @@ class CanalLines
     }
 
     /**
-     * Get canal
+     * Get canal.
      *
      * @return \App\Entity\Canal
      */
@@ -77,9 +76,10 @@ class CanalLines
     }
 
     /**
-     * Set line
+     * Set line.
      *
      * @param \App\Entity\Line $line
+     *
      * @return CanalLines
      */
     public function setLine(\App\Entity\Line $line = null)
@@ -90,7 +90,7 @@ class CanalLines
     }
 
     /**
-     * Get line
+     * Get line.
      *
      * @return \App\Entity\Line
      */

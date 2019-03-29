@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Entity\Equipment;
 use App\Form\EquipmentType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Equipment controller.
@@ -19,7 +19,6 @@ use App\Form\EquipmentType;
  */
 class EquipmentController extends AbstractController
 {
-
     /**
      * Lists all Equipment entities.
      *
@@ -33,9 +32,9 @@ class EquipmentController extends AbstractController
 
         $entities = $em->getRepository('App:Equipment')->findAll();
 
-        return array(
-            'entities' => $entities
-        );
+        return [
+            'entities' => $entities,
+        ];
     }
 
     /**
@@ -53,18 +52,18 @@ class EquipmentController extends AbstractController
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-           // $em->persist($entity->getDestinations());
+            // $em->persist($entity->getDestinations());
             $em->persist($entity);
 
             $em->flush();
 
-            return $this->redirect($this->generateUrl('equipment_show', array('id' => $entity->getExtId())));
+            return $this->redirect($this->generateUrl('equipment_show', ['id' => $entity->getExtId()]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
-            'form' => $form->createView()
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
@@ -79,13 +78,13 @@ class EquipmentController extends AbstractController
         $form = $this->createForm(
             new EquipmentType(),
             $entity,
-            array(
+            [
                 'action' => $this->generateUrl('equipment_create'),
-                'method' => 'POST'
-            )
+                'method' => 'POST',
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Добавить'));
+        $form->add('submit', 'submit', ['label' => 'Добавить']);
 
         return $form;
     }
@@ -102,10 +101,10 @@ class EquipmentController extends AbstractController
         $entity = new Equipment();
         $form = $this->createCreateForm($entity);
 
-        return array(
+        return [
             'entity' => $entity,
-            'form' => $form->createView()
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
@@ -127,10 +126,10 @@ class EquipmentController extends AbstractController
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return [
             'entity' => $entity,
-            'delete_form' => $deleteForm->createView()
-        );
+            'delete_form' => $deleteForm->createView(),
+        ];
     }
 
     /**
@@ -153,11 +152,11 @@ class EquipmentController extends AbstractController
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
-        );
+            'delete_form' => $deleteForm->createView(),
+        ];
     }
 
     /**
@@ -172,13 +171,13 @@ class EquipmentController extends AbstractController
         $form = $this->createForm(
             new EquipmentType(),
             $entity,
-            array(
-                'action' => $this->generateUrl('equipment_update', array('id' => $entity->getExtId())),
-                'method' => 'PUT'
-            )
+            [
+                'action' => $this->generateUrl('equipment_update', ['id' => $entity->getExtId()]),
+                'method' => 'PUT',
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Обновить'));
+        $form->add('submit', 'submit', ['label' => 'Обновить']);
 
         return $form;
     }
@@ -207,14 +206,14 @@ class EquipmentController extends AbstractController
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('equipment_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('equipment_edit', ['id' => $id]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
-        );
+            'delete_form' => $deleteForm->createView(),
+        ];
     }
 
     /**
@@ -253,9 +252,9 @@ class EquipmentController extends AbstractController
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('equipment_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('equipment_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Удалить'))
+            ->add('submit', 'submit', ['label' => 'Удалить'])
             ->getForm();
     }
 }

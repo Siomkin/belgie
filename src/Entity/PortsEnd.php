@@ -3,10 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Ports
+ * Ports.
  *
  * @ORM\Table(name="ports_end")
  * @ORM\Entity
@@ -14,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class PortsEnd
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -23,14 +22,14 @@ class PortsEnd
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="port_id", type="integer", nullable=false)
      */
     private $portId;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="interface", type="integer", nullable=false)
      */
@@ -44,7 +43,7 @@ class PortsEnd
     private $speed;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="type", type="integer", nullable=false)
      */
@@ -59,9 +58,9 @@ class PortsEnd
     private $canal;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -69,9 +68,10 @@ class PortsEnd
     }
 
     /**
-     * Set portId
+     * Set portId.
      *
-     * @param integer $portId
+     * @param int $portId
+     *
      * @return Ports
      */
     public function setPortId($portId)
@@ -82,9 +82,9 @@ class PortsEnd
     }
 
     /**
-     * Get portId
+     * Get portId.
      *
-     * @return integer
+     * @return int
      */
     public function getPortId()
     {
@@ -92,9 +92,10 @@ class PortsEnd
     }
 
     /**
-     * Set interface
+     * Set interface.
      *
-     * @param integer $interface
+     * @param int $interface
+     *
      * @return Ports
      */
     public function setInterface($interface)
@@ -105,9 +106,9 @@ class PortsEnd
     }
 
     /**
-     * Get interface
+     * Get interface.
      *
-     * @return integer
+     * @return int
      */
     public function getInterface()
     {
@@ -115,9 +116,10 @@ class PortsEnd
     }
 
     /**
-     * Set speed
+     * Set speed.
      *
      * @param float $speed
+     *
      * @return Ports
      */
     public function setSpeed($speed)
@@ -128,7 +130,7 @@ class PortsEnd
     }
 
     /**
-     * Get speed
+     * Get speed.
      *
      * @return float
      */
@@ -138,9 +140,10 @@ class PortsEnd
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param integer $type
+     * @param int $type
+     *
      * @return Ports
      */
     public function setType($type)
@@ -151,9 +154,9 @@ class PortsEnd
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return integer
+     * @return int
      */
     public function getType()
     {
@@ -161,9 +164,10 @@ class PortsEnd
     }
 
     /**
-     * Set type
+     * Set type.
      *
      * @param $canal
+     *
      * @return Ports
      */
     public function setCanal($canal)
@@ -174,13 +178,12 @@ class PortsEnd
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return boolean
+     * @return bool
      */
     public function getCanal()
     {
         return $this->canal;
     }
-
 }

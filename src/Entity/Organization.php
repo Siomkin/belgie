@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Organization
+ * Organization.
  *
  * @ORM\Table(name="organization")
  * @ORM\Entity
@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Organization
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -28,7 +28,6 @@ class Organization
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
-
 
     /**
      * @var string
@@ -51,11 +50,10 @@ class Organization
      */
     private $canals;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -63,9 +61,10 @@ class Organization
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Organization
      */
     public function setName($name)
@@ -76,7 +75,7 @@ class Organization
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -85,11 +84,11 @@ class Organization
         return $this->name;
     }
 
-
     /**
-     * Set equipments
+     * Set equipments.
      *
      * @param string $equipments
+     *
      * @return Organization
      */
     public function setEquipments($equipments)
@@ -100,7 +99,7 @@ class Organization
     }
 
     /**
-     * Get equipments
+     * Get equipments.
      *
      * @return string
      */
@@ -110,9 +109,10 @@ class Organization
     }
 
     /**
-     * Set lines
+     * Set lines.
      *
      * @param string $lines
+     *
      * @return Organization
      */
     public function setLines($lines)
@@ -123,7 +123,7 @@ class Organization
     }
 
     /**
-     * Get lines
+     * Get lines.
      *
      * @return string
      */
@@ -132,11 +132,11 @@ class Organization
         return $this->lines;
     }
 
-
     /**
-     * Set canals
+     * Set canals.
      *
      * @param string $canals
+     *
      * @return Organization
      */
     public function setCanals($canals)
@@ -147,7 +147,7 @@ class Organization
     }
 
     /**
-     * Get canals
+     * Get canals.
      *
      * @return string
      */

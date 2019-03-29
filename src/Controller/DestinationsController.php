@@ -5,11 +5,12 @@ namespace App\Controller;
 use App\Entity\Destinations;
 use App\Form\DestinationsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Destinations controller.
@@ -19,7 +20,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class DestinationsController extends AbstractController
 {
-
     /**
      * Lists all Destinations entities.
      *
@@ -33,16 +33,15 @@ class DestinationsController extends AbstractController
 
         $entities = $em->getRepository('App:Destinations')->findAll();
 
-        return array(
+        return [
             'entities' => $entities,
-        );
+        ];
     }
 
     /**
      * Creates a new Destinations entity.
      *
-     * @Route("/", name="destinations_create")
-     * @Method("POST")
+     * @Route("/", methods={"POST"} name="destinations_create")
      * @Template("App:Destinations:new.html.twig")
      */
     public function createAction(Request $request)
@@ -56,30 +55,35 @@ class DestinationsController extends AbstractController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('destinations_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('destinations_show', ['id' => $entity->getId()]));
         }
 
-        return array(
-            'entity' => $entity,
-            'form' => $form->createView(),
+        return $this->render(
+            ':Destinations/notneed:new.html.twig',
+            [
+                'entity' => $entity,
+                'form' => $form->createView(),
+            ]
         );
     }
 
     /**
-     * Creates a form to create a Destinations entity.
+     * @param Destinations $entity
      *
-     * @param Destinations $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @return FormInterface
      */
     private function createCreateForm(Destinations $entity)
     {
-        $form = $this->createForm(new DestinationsType(), $entity, array(
-            'action' => $this->generateUrl('destinations_create'),
-            'method' => 'POST',
-        ));
+        $form = $this->createForm(
+            new DestinationsType(),
+            $entity,
+            [
+                'action' => $this->generateUrl('destinations_create'),
+                'method' => 'POST',
+            ]
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', ['label' => 'Create']);
 
         return $form;
     }
@@ -96,10 +100,10 @@ class DestinationsController extends AbstractController
         $entity = new Destinations();
         $form = $this->createCreateForm($entity);
 
-        return array(
+        return [
             'entity' => $entity,
             'form' => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -121,10 +125,10 @@ class DestinationsController extends AbstractController
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return [
             'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -147,11 +151,11 @@ class DestinationsController extends AbstractController
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -163,12 +167,16 @@ class DestinationsController extends AbstractController
      */
     private function createEditForm(Destinations $entity)
     {
-        $form = $this->createForm(new DestinationsType(), $entity, array(
-            'action' => $this->generateUrl('destinations_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
+        $form = $this->createForm(
+            new DestinationsType(),
+            $entity,
+            [
+                'action' => $this->generateUrl('destinations_update', ['id' => $entity->getId()]),
+                'method' => 'PUT',
+            ]
+        );
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', ['label' => 'Update']);
 
         return $form;
     }
@@ -197,14 +205,14 @@ class DestinationsController extends AbstractController
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('destinations_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('destinations_edit', ['id' => $id]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -243,9 +251,9 @@ class DestinationsController extends AbstractController
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('destinations_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('destinations_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', ['label' => 'Delete'])
             ->getForm();
     }
 }

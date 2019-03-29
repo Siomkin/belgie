@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Line
+ * Line.
  *
  * @ORM\Table(name="line", indexes={@ORM\Index(name="fk_line_destinations_1", columns={"destinations_begin_id"}), @ORM\Index(name="fk_line_destinations_2", columns={"destinations_end_id"})})
  * @ORM\Entity
@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Line
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="ext_id", type="integer", nullable=false)
      * @ORM\Id
@@ -37,7 +37,7 @@ class Line
     private $code;
 
     /**
-     * @var integer
+     * @var int
      * @Assert\GreaterThanOrEqual(
      *     value = 0
      * )
@@ -60,7 +60,7 @@ class Line
     private $cableMark;
 
     /**
-     * @var integer
+     * @var int
      * @Assert\GreaterThanOrEqual(
      *     value = 0
      * )
@@ -69,7 +69,7 @@ class Line
     private $cableCap;
 
     /**
-     * @var integer
+     * @var int
      * @Assert\GreaterThanOrEqual(
      *     value = 0
      * )
@@ -78,7 +78,7 @@ class Line
     private $capacity;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="is_active_sw", type="boolean", nullable=false)
      */
@@ -104,9 +104,6 @@ class Line
      */
     private $destinationsEnd;
 
-    /**
-     *
-     */
     public function __construct()
     {
         $this->destinationsBegin = new Destinations();
@@ -114,9 +111,9 @@ class Line
     }
 
     /**
-     * Get extId
+     * Get extId.
      *
-     * @return integer
+     * @return int
      */
     public function getExtId()
     {
@@ -124,9 +121,10 @@ class Line
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Line
      */
     public function setName($name)
@@ -137,7 +135,7 @@ class Line
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -147,9 +145,10 @@ class Line
     }
 
     /**
-     * Set code
+     * Set code.
      *
      * @param string $code
+     *
      * @return Line
      */
     public function setCode($code)
@@ -160,7 +159,7 @@ class Line
     }
 
     /**
-     * Get code
+     * Get code.
      *
      * @return string
      */
@@ -170,9 +169,10 @@ class Line
     }
 
     /**
-     * Set nodeLength
+     * Set nodeLength.
      *
-     * @param integer $nodeLength
+     * @param int $nodeLength
+     *
      * @return Line
      */
     public function setNodeLength($nodeLength)
@@ -183,9 +183,9 @@ class Line
     }
 
     /**
-     * Get nodeLength
+     * Get nodeLength.
      *
-     * @return integer
+     * @return int
      */
     public function getNodeLength()
     {
@@ -193,9 +193,10 @@ class Line
     }
 
     /**
-     * Set cableType
+     * Set cableType.
      *
      * @param string $cableType
+     *
      * @return Line
      */
     public function setCableType($cableType)
@@ -206,7 +207,7 @@ class Line
     }
 
     /**
-     * Get cableType
+     * Get cableType.
      *
      * @return string
      */
@@ -216,9 +217,10 @@ class Line
     }
 
     /**
-     * Set cableMark
+     * Set cableMark.
      *
      * @param string $cableMark
+     *
      * @return Line
      */
     public function setCableMark($cableMark)
@@ -229,7 +231,7 @@ class Line
     }
 
     /**
-     * Get cableMark
+     * Get cableMark.
      *
      * @return string
      */
@@ -239,9 +241,10 @@ class Line
     }
 
     /**
-     * Set cableCap
+     * Set cableCap.
      *
-     * @param integer $cableCap
+     * @param int $cableCap
+     *
      * @return Line
      */
     public function setCableCap($cableCap)
@@ -252,9 +255,9 @@ class Line
     }
 
     /**
-     * Get cableCap
+     * Get cableCap.
      *
-     * @return integer
+     * @return int
      */
     public function getCableCap()
     {
@@ -262,9 +265,10 @@ class Line
     }
 
     /**
-     * Set capacity
+     * Set capacity.
      *
-     * @param integer $capacity
+     * @param int $capacity
+     *
      * @return Line
      */
     public function setCapacity($capacity)
@@ -275,9 +279,9 @@ class Line
     }
 
     /**
-     * Get capacity
+     * Get capacity.
      *
-     * @return integer
+     * @return int
      */
     public function getCapacity()
     {
@@ -285,9 +289,10 @@ class Line
     }
 
     /**
-     * Set isActiveSw
+     * Set isActiveSw.
      *
-     * @param boolean $isActiveSw
+     * @param bool $isActiveSw
+     *
      * @return Line
      */
     public function setIsActiveSw($isActiveSw)
@@ -298,9 +303,9 @@ class Line
     }
 
     /**
-     * Get isActiveSw
+     * Get isActiveSw.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsActiveSw()
     {
@@ -308,9 +313,10 @@ class Line
     }
 
     /**
-     * Set destinationsBegin
+     * Set destinationsBegin.
      *
      * @param \App\Entity\Destinations $destinationsBegin
+     *
      * @return Line
      */
     public function setDestinationsBegin(\App\Entity\Destinations $destinationsBegin = null)
@@ -321,7 +327,7 @@ class Line
     }
 
     /**
-     * Get destinationsBegin
+     * Get destinationsBegin.
      *
      * @return \App\Entity\Destinations
      */
@@ -331,9 +337,10 @@ class Line
     }
 
     /**
-     * Set destinationsEnd
+     * Set destinationsEnd.
      *
      * @param \App\Entity\Destinations $destinationsEnd
+     *
      * @return Line
      */
     public function setDestinationsEnd(\App\Entity\Destinations $destinationsEnd = null)
@@ -344,7 +351,7 @@ class Line
     }
 
     /**
-     * Get destinationsEnd
+     * Get destinationsEnd.
      *
      * @return \App\Entity\Destinations
      */

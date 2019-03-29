@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * EquipmentType
+ * EquipmentType.
  *
  * @ORM\Table(name="equipment_type")
  * @ORM\Entity
@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class EquipmentType
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -29,11 +29,10 @@ class EquipmentType
      */
     private $name;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -41,9 +40,10 @@ class EquipmentType
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return EquipmentType
      */
     public function setName($name)
@@ -54,7 +54,7 @@ class EquipmentType
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */

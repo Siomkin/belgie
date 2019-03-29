@@ -5,11 +5,11 @@ namespace App\Controller;
 use App\Entity\Street;
 use App\Form\StreetType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Street controller.
@@ -19,7 +19,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class StreetController extends AbstractController
 {
-
     /**
      * Lists all Street entities.
      *
@@ -33,9 +32,9 @@ class StreetController extends AbstractController
 
         $entities = $em->getRepository('App:Street')->findAll();
 
-        return array(
+        return [
             'entities' => $entities,
-        );
+        ];
     }
 
     /**
@@ -56,13 +55,13 @@ class StreetController extends AbstractController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('street_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('street_show', ['id' => $entity->getId()]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
             'form' => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -77,13 +76,13 @@ class StreetController extends AbstractController
         $form = $this->createForm(
             new StreetType(),
             $entity,
-            array(
+            [
                 'action' => $this->generateUrl('street_create'),
                 'method' => 'POST',
-            )
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Сохранить'));
+        $form->add('submit', 'submit', ['label' => 'Сохранить']);
 
         return $form;
     }
@@ -100,10 +99,10 @@ class StreetController extends AbstractController
         $entity = new Street();
         $form = $this->createCreateForm($entity);
 
-        return array(
+        return [
             'entity' => $entity,
             'form' => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -125,10 +124,10 @@ class StreetController extends AbstractController
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return [
             'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -151,11 +150,11 @@ class StreetController extends AbstractController
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -170,13 +169,13 @@ class StreetController extends AbstractController
         $form = $this->createForm(
             new StreetType(),
             $entity,
-            array(
-                'action' => $this->generateUrl('street_update', array('id' => $entity->getId())),
+            [
+                'action' => $this->generateUrl('street_update', ['id' => $entity->getId()]),
                 'method' => 'PUT',
-            )
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Обновить'));
+        $form->add('submit', 'submit', ['label' => 'Обновить']);
 
         return $form;
     }
@@ -205,14 +204,14 @@ class StreetController extends AbstractController
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('street_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('street_edit', ['id' => $id]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -251,9 +250,9 @@ class StreetController extends AbstractController
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('street_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('street_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Удалить'))
+            ->add('submit', 'submit', ['label' => 'Удалить'])
             ->getForm();
     }
 }

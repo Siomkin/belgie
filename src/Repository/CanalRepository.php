@@ -26,15 +26,14 @@ class CanalRepository extends ServiceEntityRepository
     public function selectAll()
     {
         return $this->createQueryBuilder('c')
-            ->select('c','begin_equip','end_equip')
-            ->leftJoin('c.beginEquip','begin_equip')
-            ->leftJoin('c.endEquip','end_equip')
+            ->select('c', 'begin_equip', 'end_equip')
+            ->leftJoin('c.beginEquip', 'begin_equip')
+            ->leftJoin('c.endEquip', 'end_equip')
             ->orderBy('c.extId', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-
 
     /*
     public function findOneBySomeField($value): ?Canal

@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Entity\Line;
 use App\Form\LineType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Line controller.
@@ -19,7 +19,6 @@ use App\Form\LineType;
  */
 class LineController extends AbstractController
 {
-
     /**
      * Lists all Line entities.
      *
@@ -33,10 +32,11 @@ class LineController extends AbstractController
 
         $entities = $em->getRepository('App:Line')->findAll();
 
-        return array(
+        return [
             'entities' => $entities,
-        );
+        ];
     }
+
     /**
      * Creates a new Line entity.
      *
@@ -55,13 +55,13 @@ class LineController extends AbstractController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('line_show', array('id' => $entity->getExtId())));
+            return $this->redirect($this->generateUrl('line_show', ['id' => $entity->getExtId()]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
@@ -73,12 +73,12 @@ class LineController extends AbstractController
      */
     private function createCreateForm(Line $entity)
     {
-        $form = $this->createForm(new LineType(), $entity, array(
+        $form = $this->createForm(new LineType(), $entity, [
             'action' => $this->generateUrl('line_create'),
             'method' => 'POST',
-        ));
+        ]);
 
-        $form->add('submit', 'submit', array('label' => 'Добавить'));
+        $form->add('submit', 'submit', ['label' => 'Добавить']);
 
         return $form;
     }
@@ -93,12 +93,12 @@ class LineController extends AbstractController
     public function newAction()
     {
         $entity = new Line();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
-        return array(
+        return [
             'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
@@ -120,10 +120,10 @@ class LineController extends AbstractController
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
-            'entity'      => $entity,
+        return [
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -146,31 +146,32 @@ class LineController extends AbstractController
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
-            'entity'      => $entity,
-            'form'   => $editForm->createView(),
+        return [
+            'entity' => $entity,
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
-    * Creates a form to edit a Line entity.
-    *
-    * @param Line $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Line entity.
+     *
+     * @param Line $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Line $entity)
     {
-        $form = $this->createForm(new LineType(), $entity, array(
-            'action' => $this->generateUrl('line_update', array('id' => $entity->getExtId())),
+        $form = $this->createForm(new LineType(), $entity, [
+            'action' => $this->generateUrl('line_update', ['id' => $entity->getExtId()]),
             'method' => 'PUT',
-        ));
+        ]);
 
-        $form->add('submit', 'submit', array('label' => 'Обновить'));
+        $form->add('submit', 'submit', ['label' => 'Обновить']);
 
         return $form;
     }
+
     /**
      * Edits an existing Line entity.
      *
@@ -195,15 +196,16 @@ class LineController extends AbstractController
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('line_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('line_edit', ['id' => $id]));
         }
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+        return [
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
+
     /**
      * Deletes a Line entity.
      *
@@ -240,9 +242,9 @@ class LineController extends AbstractController
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('line_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('line_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Удалить'))
+            ->add('submit', 'submit', ['label' => 'Удалить'])
             ->getForm()
         ;
     }

@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Entity\Region;
 use App\Form\RegionType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Region controller.
@@ -19,7 +19,6 @@ use App\Form\RegionType;
  */
 class RegionController extends AbstractController
 {
-
     /**
      * Lists all Region entities.
      *
@@ -33,9 +32,9 @@ class RegionController extends AbstractController
 
         $entities = $em->getRepository('App:Region')->findAll();
 
-        return array(
-            'entities' => $entities
-        );
+        return [
+            'entities' => $entities,
+        ];
     }
 
     /**
@@ -56,13 +55,13 @@ class RegionController extends AbstractController
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('region_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('region_show', ['id' => $entity->getId()]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
-            'form' => $form->createView()
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
@@ -77,13 +76,13 @@ class RegionController extends AbstractController
         $form = $this->createForm(
             new RegionType(),
             $entity,
-            array(
+            [
                 'action' => $this->generateUrl('region_create'),
-                'method' => 'POST'
-            )
+                'method' => 'POST',
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Добавить'));
+        $form->add('submit', 'submit', ['label' => 'Добавить']);
 
         return $form;
     }
@@ -100,10 +99,10 @@ class RegionController extends AbstractController
         $entity = new Region();
         $form = $this->createCreateForm($entity);
 
-        return array(
+        return [
             'entity' => $entity,
-            'form' => $form->createView()
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
@@ -125,10 +124,10 @@ class RegionController extends AbstractController
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return [
             'entity' => $entity,
-            'delete_form' => $deleteForm->createView()
-        );
+            'delete_form' => $deleteForm->createView(),
+        ];
     }
 
     /**
@@ -151,11 +150,11 @@ class RegionController extends AbstractController
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
-        );
+            'delete_form' => $deleteForm->createView(),
+        ];
     }
 
     /**
@@ -170,13 +169,13 @@ class RegionController extends AbstractController
         $form = $this->createForm(
             new RegionType(),
             $entity,
-            array(
-                'action' => $this->generateUrl('region_update', array('id' => $entity->getId())),
-                'method' => 'PUT'
-            )
+            [
+                'action' => $this->generateUrl('region_update', ['id' => $entity->getId()]),
+                'method' => 'PUT',
+            ]
         );
 
-        $form->add('submit', 'submit', array('label' => 'Обновить'));
+        $form->add('submit', 'submit', ['label' => 'Обновить']);
 
         return $form;
     }
@@ -205,14 +204,14 @@ class RegionController extends AbstractController
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('region_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('region_edit', ['id' => $id]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
-        );
+            'delete_form' => $deleteForm->createView(),
+        ];
     }
 
     /**
@@ -251,9 +250,9 @@ class RegionController extends AbstractController
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('region_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('region_delete', ['id' => $id]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Удалить'))
+            ->add('submit', 'submit', ['label' => 'Удалить'])
             ->getForm();
     }
 }

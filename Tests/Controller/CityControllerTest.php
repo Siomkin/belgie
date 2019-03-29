@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class CityControllerTest extends WebTestCase
 {
-
     public function testCompleteScenario()
     {
         // Create a new client to browse the application
@@ -14,14 +13,14 @@ class CityControllerTest extends WebTestCase
 
         // Create a new entry in the database
         $crawler = $client->request('GET', '/city/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /city/");
+        $this->assertSame(200, $client->getResponse()->getStatusCode(), 'Unexpected HTTP status code for GET /city/');
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
-            'appbundle_city[field_name]'  => 'Test',
+        $form = $crawler->selectButton('Create')->form([
+            'appbundle_city[field_name]' => 'Test',
             // ... other fields to fill
-        ));
+        ]);
 
         $client->submit($form);
         $crawler = $client->followRedirect();
@@ -32,10 +31,10 @@ class CityControllerTest extends WebTestCase
         // Edit the entity
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
-        $form = $crawler->selectButton('Update')->form(array(
-            'appbundle_city[field_name]'  => 'Foo',
+        $form = $crawler->selectButton('Update')->form([
+            'appbundle_city[field_name]' => 'Foo',
             // ... other fields to fill
-        ));
+        ]);
 
         $client->submit($form);
         $crawler = $client->followRedirect();
@@ -50,6 +49,4 @@ class CityControllerTest extends WebTestCase
         // Check the entity has been delete on the list
         $this->assertNotRegExp('/Foo/', $client->getResponse()->getContent());
     }
-
-
 }

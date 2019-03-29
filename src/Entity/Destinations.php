@@ -4,8 +4,9 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
- * Destinations
+ * Destinations.
  *
  * @ORM\Table(name="destinations", indexes={@ORM\Index(name="fk_address_city_1", columns={"address_city_id"}), @ORM\Index(name="fk_address_region_1", columns={"address_region_id"}), @ORM\Index(name="fk_address_street_1", columns={"address_street_id"})})
  * @ORM\Entity
@@ -13,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Destinations
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -22,14 +23,14 @@ class Destinations
     private $id;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="type", type="boolean", nullable=true)
      */
     private $type = false;
 
     /**
-     * @var integer
+     * @var int
      * @Assert\NotBlank(groups={"address"})
      * @ORM\Column(name="address_index", type="integer", nullable=true)
      */
@@ -121,11 +122,10 @@ class Destinations
      */
     private $addressStreet;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -133,9 +133,10 @@ class Destinations
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param boolean $type
+     * @param bool $type
+     *
      * @return Destinations
      */
     public function setType($type)
@@ -146,9 +147,9 @@ class Destinations
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return boolean
+     * @return bool
      */
     public function getType()
     {
@@ -156,9 +157,10 @@ class Destinations
     }
 
     /**
-     * Set addressIndex
+     * Set addressIndex.
      *
-     * @param integer $addressIndex
+     * @param int $addressIndex
+     *
      * @return Destinations
      */
     public function setAddressIndex($addressIndex)
@@ -169,9 +171,9 @@ class Destinations
     }
 
     /**
-     * Get addressIndex
+     * Get addressIndex.
      *
-     * @return integer
+     * @return int
      */
     public function getAddressIndex()
     {
@@ -179,9 +181,10 @@ class Destinations
     }
 
     /**
-     * Set addressBuildingNumber
+     * Set addressBuildingNumber.
      *
      * @param string $addressBuildingNumber
+     *
      * @return Destinations
      */
     public function setAddressBuildingNumber($addressBuildingNumber)
@@ -192,7 +195,7 @@ class Destinations
     }
 
     /**
-     * Get addressBuildingNumber
+     * Get addressBuildingNumber.
      *
      * @return string
      */
@@ -202,9 +205,10 @@ class Destinations
     }
 
     /**
-     * Set addressOfficeNumber
+     * Set addressOfficeNumber.
      *
      * @param string $addressOfficeNumber
+     *
      * @return Destinations
      */
     public function setAddressOfficeNumber($addressOfficeNumber)
@@ -215,7 +219,7 @@ class Destinations
     }
 
     /**
-     * Get addressOfficeNumber
+     * Get addressOfficeNumber.
      *
      * @return string
      */
@@ -225,9 +229,10 @@ class Destinations
     }
 
     /**
-     * Set latitudeDeg
+     * Set latitudeDeg.
      *
      * @param string $latitudeDeg
+     *
      * @return Destinations
      */
     public function setLatitudeDeg($latitudeDeg)
@@ -238,7 +243,7 @@ class Destinations
     }
 
     /**
-     * Get latitudeDeg
+     * Get latitudeDeg.
      *
      * @return string
      */
@@ -248,9 +253,10 @@ class Destinations
     }
 
     /**
-     * Set latitudeMin
+     * Set latitudeMin.
      *
      * @param string $latitudeMin
+     *
      * @return Destinations
      */
     public function setLatitudeMin($latitudeMin)
@@ -261,7 +267,7 @@ class Destinations
     }
 
     /**
-     * Get latitudeMin
+     * Get latitudeMin.
      *
      * @return string
      */
@@ -271,9 +277,10 @@ class Destinations
     }
 
     /**
-     * Set latitudeSec
+     * Set latitudeSec.
      *
      * @param string $latitudeSec
+     *
      * @return Destinations
      */
     public function setLatitudeSec($latitudeSec)
@@ -284,7 +291,7 @@ class Destinations
     }
 
     /**
-     * Get latitudeSec
+     * Get latitudeSec.
      *
      * @return string
      */
@@ -294,9 +301,10 @@ class Destinations
     }
 
     /**
-     * Set longitudeDeg
+     * Set longitudeDeg.
      *
      * @param string $longitudeDeg
+     *
      * @return Destinations
      */
     public function setLongitudeDeg($longitudeDeg)
@@ -307,7 +315,7 @@ class Destinations
     }
 
     /**
-     * Get longitudeDeg
+     * Get longitudeDeg.
      *
      * @return string
      */
@@ -317,9 +325,10 @@ class Destinations
     }
 
     /**
-     * Set longitudeMin
+     * Set longitudeMin.
      *
      * @param string $longitudeMin
+     *
      * @return Destinations
      */
     public function setLongitudeMin($longitudeMin)
@@ -330,7 +339,7 @@ class Destinations
     }
 
     /**
-     * Get longitudeMin
+     * Get longitudeMin.
      *
      * @return string
      */
@@ -340,9 +349,10 @@ class Destinations
     }
 
     /**
-     * Set longitudeSec
+     * Set longitudeSec.
      *
      * @param string $longitudeSec
+     *
      * @return Destinations
      */
     public function setLongitudeSec($longitudeSec)
@@ -353,7 +363,7 @@ class Destinations
     }
 
     /**
-     * Get longitudeSec
+     * Get longitudeSec.
      *
      * @return string
      */
@@ -363,9 +373,10 @@ class Destinations
     }
 
     /**
-     * Set addressCity
+     * Set addressCity.
      *
      * @param \App\Entity\City $addressCity
+     *
      * @return Destinations
      */
     public function setAddressCity(\App\Entity\City $addressCity = null)
@@ -376,7 +387,7 @@ class Destinations
     }
 
     /**
-     * Get addressCity
+     * Get addressCity.
      *
      * @return \App\Entity\City
      */
@@ -386,9 +397,10 @@ class Destinations
     }
 
     /**
-     * Set addressRegion
+     * Set addressRegion.
      *
      * @param \App\Entity\Region $addressRegion
+     *
      * @return Destinations
      */
     public function setAddressRegion(\App\Entity\Region $addressRegion = null)
@@ -399,7 +411,7 @@ class Destinations
     }
 
     /**
-     * Get addressRegion
+     * Get addressRegion.
      *
      * @return \App\Entity\Region
      */
@@ -409,9 +421,10 @@ class Destinations
     }
 
     /**
-     * Set addressStreet
+     * Set addressStreet.
      *
      * @param \App\Entity\Street $addressStreet
+     *
      * @return Destinations
      */
     public function setAddressStreet(\App\Entity\Street $addressStreet = null)
@@ -422,7 +435,7 @@ class Destinations
     }
 
     /**
-     * Get addressStreet
+     * Get addressStreet.
      *
      * @return \App\Entity\Street
      */
@@ -439,10 +452,10 @@ class Destinations
         if ($this->type) {
             return $this->getLatitudeDeg().', '.$this->getLatitudeMin().', '.$this->getLatitudeSec()
             .', '.$this->getLongitudeDeg().', '.$this->getLongitudeMin().', '.$this->getLongitudeSec();
-        } else {
-            return $this->getAddressCity()->getName().', '.$this->getAddressRegion()->getName().', '.
+        }
+
+        return $this->getAddressCity()->getName().', '.$this->getAddressRegion()->getName().', '.
             $this->getAddressIndex().', '.$this->getAddressStreet()->getName().', '.$this->getAddressBuildingNumber(
             ).', '.$this->getAddressOfficeNumber();
-        }
     }
 }
