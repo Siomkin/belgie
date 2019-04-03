@@ -9,17 +9,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Equipment.
  *
- * @ORM\Table(name="equipment",
- *  uniqueConstraints={@ORM\UniqueConstraint(name="uniq_code", columns={"code"})},
+ * @ORM\Table(name="equipment", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_code", columns={"code"})},
  *  indexes={
- * @ORM\Index(name="fk_equipment_equipment_type_1", columns={"type_id"}),
- * @ORM\Index(name="fk_equipment_destinations_1", columns={"destinations_id"})
- * })
- * @ORM\Entity
+ *      @ORM\Index(name="fk_equipment_equipment_type_1", columns={"type_id"}),
+ *      @ORM\Index(name="fk_equipment_destinations_1", columns={"destinations_id"})
+ *  })
+ * @ORM\Entity(repositoryClass="App\Repository\EquipmentRepository")
  * @UniqueEntity("code")
  */
 class Equipment
 {
+    public const NUM_ITEMS = 100;
+
     /**
      * @var int
      *

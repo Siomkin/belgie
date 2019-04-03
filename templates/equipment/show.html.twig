@@ -7,38 +7,38 @@
         <tbody>
         <tr>
             <th>Внутренний идентификатор</th>
-            <td>{{ entity.code }}</td>
+            <td>{{ equipment.code }}</td>
         </tr>
         <tr>
             <th>Производитель</th>
-            <td>{{ entity.vendor }}</td>
+            <td>{{ equipment.vendor }}</td>
         </tr>
         <tr>
             <th>Марка(модель) оборудования</th>
-            <td>{{ entity.model }}</td>
+            <td>{{ equipment.model }}</td>
         </tr>
         <tr>
             <th>Тип оборудования</th>
-            <td>{{ entity.type.name }}</td>
+            <td>{{ equipment.type.name }}</td>
         </tr>
         <tr>
             <th>Включен</th>
-            <td>{{ entity.isActiveSw }}</td>
+            <td>{{ equipment.isActiveSw }}</td>
         </tr>
         </tbody>
     </table>
 
     <ul class="record_actions">
         <li>
-            <a href="{{ path('equipment') }}">
+            <a href="{{ path('equipment_index') }}">
                 Назад к списку
             </a>
         </li>
         <li>
-            <a href="{{ path('equipment_edit', { 'id': entity.extId }) }}">
+            <a href="{{ path('equipment_edit', { 'extId': equipment.extId }) }}">
                 редактировать
             </a>
         </li>
     </ul>
-    <div class="text-right">{{ form(delete_form) }}</div>
+    <div class="text-right"> {{ include('equipment/_delete_form.html.twig') }}</div>
 {% endblock %}

@@ -1,0 +1,54 @@
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+<div>{{ form_errors(form) }}</div>
+<div class="form-group">
+    {{ form_label(form.code, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+    <div class="col-xs-6">{{ form_widget(form.code) }}</div>
+    <div class="col-xs-12">{{ form_errors(form.code) }}</div>
+</div>
+<div class="form-group">
+    {{ form_label(form.vendor, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+    <div class="col-xs-6">{{ form_widget(form.vendor) }}</div>
+    <div class="col-xs-12">{{ form_errors(form.vendor) }}</div>
+</div>
+<div class="form-group">
+    {{ form_label(form.model, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+    <div class="col-xs-6">{{ form_widget(form.model) }}</div>
+    <div class="col-xs-12">{{ form_errors(form.model) }}</div>
+</div>
+
+<div class="form-group">
+    {{ form_label(form.type, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+    <div class="col-xs-6">{{ form_widget(form.type) }}</div>
+    <div class="col-xs-12">{{ form_errors(form.type) }}</div>
+</div>
+<h3>Расположение</h3>
+
+<div class="form-group">
+    <div id="destinations">
+        {{ include('destinations/_form.html.twig', {'form': form.destinations}) }}
+    </div>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('#equipment_destinations_type').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#destinations .address').hide();
+                    $('#destinations .coords').show();
+                } else {
+                    $('#destinations .address').show();
+                    $('#destinations .coords').hide();
+                }
+            });
+        });
+    </script>
+</div>
+
+<div class="form-group">
+    {{ form_label(form.isActiveSw, null, {'label_attr':  {'class': 'col-xs-2'} }) }}
+    <div class="col-sm-offset-2 col-xs-6">{{ form_widget(form.isActiveSw) }}</div>
+    <div class="col-xs-12">{{ form_errors(form.isActiveSw) }}</div>
+</div>
+
+<button class="btn col-sm-offset-2 btn-default">{{ button_label|default('Save') }}</button>
+{{ form_rest(form) }}
+
+{{ form_end(form) }}

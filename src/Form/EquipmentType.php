@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Equipment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,7 +28,7 @@ class EquipmentType extends AbstractType
              )*/
             ->add(
                 'destinations',
-                new DestinationsType(),
+                DestinationsType::class,
                 [
                     'required' => false,
                 ]
@@ -36,36 +37,13 @@ class EquipmentType extends AbstractType
             ->add('isActiveSw', null, ['label' => 'Активный']);
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             [
-                'data_class' => 'App\Entity\Equipment',
-                'cascade_validation' => true, //needed to validate embeed forms.
-                // 'validation_groups' => array('registration'), //use of validation groups.
-                'csrf_protection' => true,
-                'csrf_field_name' => '_token',
-                // a unique key to help generate the secret token
-                //'intention' => 'task_item',
-                /* 'validation_groups' => function (FormInterface $form) {
-                     $data = $form->getData();
-                     dump($data->getDestinations()->getType());
-                     if (0 === $data->getType()) {
-                         return array('address');
-                     } else {
-                         return array('latitude');
-                     }
-                 },*/
-                // 'validation_groups' => array('address')
+                'data_class' => Equipment::class,
+                // 'cascade_validation' => true,
             ]
         );
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'App_equipment';
     }
 }

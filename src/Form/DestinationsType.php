@@ -31,7 +31,7 @@ class DestinationsType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => 'App\Entity\Destinations',
+                'data_class' => \App\Entity\Destinations::class,
                 // 'validation_groups' => array('address'),
                 'validation_groups' => function (FormInterface $form) {
                     $data = $form->getData();
@@ -46,11 +46,4 @@ class DestinationsType extends AbstractType
         );
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'App_destinations';
-    }
 }

@@ -93,7 +93,7 @@ class Destinations
     private $longitudeSec;
 
     /**
-     * @var \City
+     * @var City
      * @Assert\NotNull(groups={"address"})
      * @ORM\ManyToOne(targetEntity="City")
      * @ORM\JoinColumns({
@@ -103,7 +103,7 @@ class Destinations
     private $addressCity;
 
     /**
-     * @var \Region
+     * @var Region
      * @Assert\NotNull(groups={"address"})
      * @ORM\ManyToOne(targetEntity="Region")
      * @ORM\JoinColumns({
@@ -113,7 +113,7 @@ class Destinations
     private $addressRegion;
 
     /**
-     * @var \Street
+     * @var Street
      * @Assert\NotNull(groups={"address"})
      * @ORM\ManyToOne(targetEntity="Street")
      * @ORM\JoinColumns({

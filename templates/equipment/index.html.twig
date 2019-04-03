@@ -21,21 +21,25 @@
         </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for equipment in equipments %}
             <tr>
-                <td>{{ entity.extid }}</td>
-                <td><a href="{{ path('equipment_show', { 'id': entity.extId }) }}">{{ entity.code }}</a></td>
-                <td>{{ entity.vendor }}</td>
-                <td>{{ entity.model }}</td>
-                <td>{{ entity.type.name }}</td>
-                <td>{{ entity.destinations }}</td>
-                <td>{{ entity.isActiveSw }}</td>
+                <td>{{ equipment.extId }}</td>
+                <td><a href="{{ path('equipment_show', { 'extId': equipment.extId }) }}">{{ equipment.code }}</a></td>
+                <td>{{ equipment.vendor }}</td>
+                <td>{{ equipment.model }}</td>
+                <td>{{ equipment.type.name }}</td>
+                <td>{{ equipment.destinations }}</td>
+                <td>{{ equipment.isActiveSw }}</td>
                 <td>
-                    <a href="{{ path('equipment_edit', { 'id': entity.extId }) }}">редакт.</a>
+                    <a href="{{ path('equipment_edit', { 'extId': equipment.extId }) }}">редакт.</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
+    {% if equipments.haveToPaginate %}
+        <div class="navigation text-center">
+            {{ pagerfanta(equipments, 'twitter_bootstrap3_translated', {routeName: 'equipment_index_paginated', routeParams: app.request.query.all}) }}
+        </div>
+    {% endif %}
 {% endblock %}
