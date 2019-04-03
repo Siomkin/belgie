@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Line;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,34 +22,26 @@ class LineType extends AbstractType
             ->add('isActiveSw', null, ['label' => 'Активный'])
             ->add(
                 'destinationsBegin',
-                new DestinationsType(),
+                DestinationsType::class,
                 [
                     'required' => false,
                 ]
             )->add(
                 'destinationsEnd',
-                new DestinationsType(),
+                DestinationsType::class,
                 [
                     'required' => false,
                 ]
             );
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             [
-                'data_class' => 'App\Entity\Line',
+                'data_class' => Line::class,
                 'cascade_validation' => true,
             ]
         );
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'App_line';
     }
 }

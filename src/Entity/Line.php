@@ -9,10 +9,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Line.
  *
  * @ORM\Table(name="line", indexes={@ORM\Index(name="fk_line_destinations_1", columns={"destinations_begin_id"}), @ORM\Index(name="fk_line_destinations_2", columns={"destinations_end_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\LineRepository")
  */
 class Line
 {
+    public const NUM_ITEMS = 25;
+
     /**
      * @var int
      *

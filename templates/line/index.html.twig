@@ -23,21 +23,27 @@
         </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for line in lines %}
             <tr>
-                <td>{{ entity.extId }}</td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.code }}</td>
-                <td>{{ entity.destinationsBegin }}</td>
-                <td>{{ entity.destinationsEnd }}</td>
-                <td>{{ entity.nodeLength }}</td>
-                <td>{{ entity.capacity }}</td>
-                <td>{{ entity.isActiveSw }}</td>
+                <td>{{ line.extId }}</td>
+                <td>{{ line.name }}</td>
+                <td>{{ line.code }}</td>
+                <td>{{ line.destinationsBegin }}</td>
+                <td>{{ line.destinationsEnd }}</td>
+                <td>{{ line.nodeLength }}</td>
+                <td>{{ line.capacity }}</td>
+                <td>{{ line.isActiveSw }}</td>
                 <td>
-                    <a href="{{ path('line_edit', { 'id': entity.extId }) }}">ред.</a>
+                    <a href="{{ path('line_edit', { 'extId': line.extId }) }}">ред.</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+
+    {% if lines.haveToPaginate %}
+        <div class="navigation text-center">
+            {{ pagerfanta(lines, 'twitter_bootstrap3_translated', {routeName: 'line_index_paginated', routeParams: app.request.query.all}) }}
+        </div>
+    {% endif %}
 {% endblock %}

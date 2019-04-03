@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Entity\Canal;
 use App\Entity\Equipment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -11,10 +10,10 @@ use Pagerfanta\Pagerfanta;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Canal|null find($id, $lockMode = null, $lockVersion = null)
- * @method Canal|null findOneBy(array $criteria, array $orderBy = null)
- * @method Canal[]    findAll()
- * @method Canal[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Equipment|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Equipment|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Equipment[]    findAll()
+ * @method Equipment[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class EquipmentRepository extends ServiceEntityRepository
 {
@@ -24,7 +23,7 @@ class EquipmentRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Canal[] Returns an array of Canal objects
+    //  * @return Equipment[] Returns an array of Equipment objects
     //  */
 
     public function selectAll($page = 1): Pagerfanta
