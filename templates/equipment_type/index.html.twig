@@ -3,7 +3,7 @@
 {% block content -%}
     <h1>Список типов оборудования</h1>
     <div class="text-right">
-        <a class="btn btn-default" href="{{ path('equipmenttype_new') }}">
+        <a class="btn btn-default" href="{{ path('equipment_type_new') }}">
             Добавить новый тип
         </a>
     </div>
@@ -17,11 +17,11 @@
         </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for equipment_type in equipment_types %}
             <tr>
-                <td>{{ entity.id }}</td>
-                <td><a href="{{ path('equipmenttype_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-                <td><a href="{{ path('equipmenttype_edit', { 'id': entity.id }) }}">редактировать</a></td>
+                <td>{{ equipment_type.id }}</td>
+                <td><a href="{{ path('equipment_type_show', { 'id': equipment_type.id }) }}">{{ equipment_type.name }}</a></td>
+                <td><a href="{{ path('equipment_type_edit', { 'id': equipment_type.id }) }}">редактировать</a></td>
             </tr>
         {% endfor %}
         </tbody>
