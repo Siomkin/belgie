@@ -15,26 +15,16 @@ class StreetType extends AbstractType
             ->add(
                 'name',
                 null,
-                [
-                    'label' => 'Название:',
-                ]
+                ['label' => 'Название:']
             );
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             [
                 'data_class' => Street::class,
             ]
         );
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'App_street';
     }
 }
