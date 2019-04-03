@@ -56,12 +56,4 @@ class CanalType extends AbstractType
             ]
         );
     }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'app_canal';
-    }
 }
