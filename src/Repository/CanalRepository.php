@@ -4,6 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Canal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -23,16 +26,24 @@ class CanalRepository extends ServiceEntityRepository
     //  * @return Canal[] Returns an array of Canal objects
     //  */
 
-    public function selectAll()
+    public function selectAll($page = 1): Pagerfanta
     {
-        return $this->createQueryBuilder('c')
+        $qb = $this->createQueryBuilder('c')
             ->select('c', 'begin_equip', 'end_equip')
             ->leftJoin('c.beginEquip', 'begin_equip')
             ->leftJoin('c.endEquip', 'end_equip')
-            ->orderBy('c.extId', 'ASC')
-            ->getQuery()
-            ->getResult()
-        ;
+            ->orderBy('c.extId', 'ASC');
+
+        return $this->createPaginator($qb->getQuery(), $page);
+    }
+
+    private function createPaginator(Query $query, int $page): Pagerfanta
+    {
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
+        $paginator->setMaxPerPage(Canal::NUM_ITEMS);
+        $paginator->setCurrentPage($page);
+
+        return $paginator;
     }
 
     /*

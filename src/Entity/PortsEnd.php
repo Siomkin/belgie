@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ports.
@@ -23,34 +24,34 @@ class PortsEnd
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="port_id", type="integer", nullable=false)
      */
     private $portId;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="interface", type="integer", nullable=false)
      */
     private $interface;
 
     /**
      * @var float
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="speed", type="float", precision=10, scale=0, nullable=false)
      */
     private $speed;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="type", type="integer", nullable=false)
      */
     private $type;
 
     /**
-     * @var Ports
+     * @var Canal
      *
      * @ORM\ManyToOne(targetEntity="Canal", inversedBy="endPorts", cascade={"persist"})
      * @ORM\JoinColumn(name="canal_id", referencedColumnName="ext_id")
@@ -72,7 +73,7 @@ class PortsEnd
      *
      * @param int $portId
      *
-     * @return Ports
+     * @return PortsEnd
      */
     public function setPortId($portId)
     {
@@ -96,7 +97,7 @@ class PortsEnd
      *
      * @param int $interface
      *
-     * @return Ports
+     * @return PortsEnd
      */
     public function setInterface($interface)
     {
@@ -120,7 +121,7 @@ class PortsEnd
      *
      * @param float $speed
      *
-     * @return Ports
+     * @return PortsEnd
      */
     public function setSpeed($speed)
     {
@@ -144,7 +145,7 @@ class PortsEnd
      *
      * @param int $type
      *
-     * @return Ports
+     * @return PortsEnd
      */
     public function setType($type)
     {
@@ -168,7 +169,7 @@ class PortsEnd
      *
      * @param $canal
      *
-     * @return Ports
+     * @return PortsEnd
      */
     public function setCanal($canal)
     {
@@ -180,7 +181,7 @@ class PortsEnd
     /**
      * Get type.
      *
-     * @return bool
+     * @return Canal
      */
     public function getCanal()
     {

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ports.
@@ -23,28 +24,28 @@ class Ports
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="port_id", type="integer", nullable=false)
      */
     private $portId;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="interface", type="integer", nullable=false)
      */
     private $interface;
 
     /**
      * @var float
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="speed", type="float", precision=10, scale=0, nullable=false)
      */
     private $speed;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="type", type="integer", nullable=false)
      */
     private $type;

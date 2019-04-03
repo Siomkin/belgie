@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Canal.
@@ -12,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Canal
 {
+    public const NUM_ITEMS = 100;
+
     /**
      * @var int
      *
@@ -23,7 +27,7 @@ class Canal
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
@@ -47,7 +51,7 @@ class Canal
 
     /**
      * @var Ports
-     *
+     * @Assert\NotBlank
      * @ORM\OneToMany(targetEntity="App\Entity\Ports", mappedBy="canal", cascade={"persist"})
      */
     private $beginPorts;
@@ -63,14 +67,15 @@ class Canal
     private $endEquip;
 
     /**
-     * @var PortsEnd
-     *
+     * @var ArrayCollection
+     * @Assert\NotBlank
      * @ORM\OneToMany(targetEntity="App\Entity\PortsEnd", mappedBy="canal", cascade={"persist"})
      */
     private $endPorts;
 
     /**
-     * @var Line
+     * @var ArrayCollection
+     * @Assert\NotBlank
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\Line", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="canal_lines",
@@ -82,9 +87,9 @@ class Canal
 
     public function __construct()
     {
-        $this->lines = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->beginPorts = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->endPorts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->lines = new ArrayCollection();
+        $this->beginPorts = new ArrayCollection();
+        $this->endPorts = new ArrayCollection();
     }
 
     /**
@@ -210,7 +215,7 @@ class Canal
     /**
      * Get lines.
      *
-     * @return Line
+     * @return ArrayCollection
      */
     public function getLines()
     {
@@ -220,7 +225,7 @@ class Canal
     /**
      * Set ports.
      *
-     * @param \App\Entity\Ports $ports
+     * @param Ports $ports
      *
      * @return Canal
      */
@@ -247,7 +252,7 @@ class Canal
     /**
      * Set ports.
      *
-     * @param \App\Entity\Ports $ports
+     * @param Ports $ports
      *
      * @return Canal
      */

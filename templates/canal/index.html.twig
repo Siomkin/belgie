@@ -34,4 +34,10 @@
         </tbody>
     </table>
 
+    {% if canals.haveToPaginate %}
+        <div class="navigation text-center">
+            {{ pagerfanta(canals, 'twitter_bootstrap3_translated', {routeName: 'canal_index_paginated', routeParams: app.request.query.all}) }}
+        </div>
+    {% endif %}
+
 {% endblock %}

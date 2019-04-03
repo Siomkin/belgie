@@ -16,17 +16,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class CanalController extends AbstractController
 {
     /**
-     * @Route("/", name="canal", methods={"GET"})
+     * @Route("/", name="canal", defaults={"page": "1"}, methods={"GET"})
+     * @Route("/page/{page<[1-9]\d*>}", methods={"GET"}, name="canal_index_paginated")
+     *
+     * @param int             $page
+     * @param CanalRepository $canalRepository
+     *
+     * @return Response
      */
-    public function index(CanalRepository $canalRepository): Response
+    public function index(int $page, CanalRepository $canalRepository): Response
     {
-        return $this->render('canal/index.html.twig', [
-            'canals' => $canalRepository->selectAll(),
-        ]);
+        return $this->render(
+            'canal/index.html.twig',
+            [
+                'canals' => $canalRepository->selectAll($page),
+            ]
+        );
     }
 
     /**
      * @Route("/new", name="canal_new", methods={"GET","POST"})
+     *
+     * @param Request $request
+     *
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -42,24 +55,39 @@ class CanalController extends AbstractController
             return $this->redirectToRoute('canal');
         }
 
-        return $this->render('canal/new.html.twig', [
-            'canal' => $canal,
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'canal/new.html.twig',
+            [
+                'canal' => $canal,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
      * @Route("/{extId}", name="canal_show", methods={"GET"})
+     *
+     * @param Canal $canal
+     *
+     * @return Response
      */
     public function show(Canal $canal): Response
     {
-        return $this->render('canal/show.html.twig', [
-            'canal' => $canal,
-        ]);
+        return $this->render(
+            'canal/show.html.twig',
+            [
+                'canal' => $canal,
+            ]
+        );
     }
 
     /**
      * @Route("/{extId}/edit", name="canal_edit", methods={"GET","POST"})
+     *
+     * @param Request $request
+     * @param Canal   $canal
+     *
+     * @return Response
      */
     public function edit(Request $request, Canal $canal): Response
     {
@@ -69,19 +97,30 @@ class CanalController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('canal', [
-                'extId' => $canal->getExtId(),
-            ]);
+            return $this->redirectToRoute(
+                'canal',
+                [
+                    'extId' => $canal->getExtId(),
+                ]
+            );
         }
 
-        return $this->render('canal/edit.html.twig', [
-            'canal' => $canal,
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'canal/edit.html.twig',
+            [
+                'canal' => $canal,
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
      * @Route("/{extId}", name="canal_delete", methods={"DELETE"})
+     *
+     * @param Request $request
+     * @param Canal   $canal
+     *
+     * @return Response
      */
     public function delete(Request $request, Canal $canal): Response
     {

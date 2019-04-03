@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Canal;
+use App\Entity\PortsEnd;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,17 +17,18 @@ class PortsEndType extends AbstractType
             ->add('portId', null, ['label' => '* Идентификатор (номер) порта оборудования:'])
             ->add(
                 'interface',
-                'choice',
+                ChoiceType::class,
                 [
                     'choices' => Canal::getPortInterfaces(),
                     'label' => '* Наименование канала связи:',
                     'empty_data' => null,
+                    'attr' => ['class' => 'form-control'],
                 ]
             )
             ->add('speed', null, ['label' => '* скорость передачи'])
             ->add(
                 'type',
-                'choice',
+                ChoiceType::class,
                 [
                     'choices' => Canal::getPortSpeedTypes(),
                     'label' => '* ед. изм:',
@@ -38,7 +41,7 @@ class PortsEndType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => 'App\Entity\PortsEnd',
+                'data_class' => PortsEnd::class,
             ]
         );
     }
