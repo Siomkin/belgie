@@ -16,12 +16,12 @@
         </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for city in cities %}
             <tr>
-                <td>{{ entity.id }}</td>
-                <td><a href="{{ path('city_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>{{ city.id }}</td>
+                <td><a href="{{ path('city_show', { 'id': city.id }) }}">{{ city.name }}</a></td>
                 <td>
-                    <a href="{{ path('city_edit', { 'id': entity.id }) }}">Редактировать</a>
+                    <a href="{{ path('city_edit', { 'id': city.id }) }}">Редактировать</a>
                 </td>
             </tr>
         {% endfor %}

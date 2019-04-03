@@ -3,13 +3,7 @@
 {% block content -%}
     <h1>Добавление города</h1>
 
-    {{ form(form) }}
+    {{ include('city/_form.html.twig') }}
 
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('city') }}">
-                Назад к списку
-            </a>
-        </li>
-    </ul>
+    <a href="{{ path('city') }}">Назад к списку</a>
 {% endblock %}

@@ -3,14 +3,9 @@
 {% block content -%}
     <h1>Редактировать город</h1>
 
-    {{ form(edit_form) }}
+    {{ include('city/_form.html.twig', {'button_label': 'Обновить'}) }}
 
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('city') }}">
-                Назад к списку
-            </a>
-        </li>
-    </ul>
-    <div class="text-right">{{ form(delete_form) }}</div>
+    <a href="{{ path('city') }}">Назад к списку</a>
+
+    {{ include('city/_delete_form.html.twig') }}
 {% endblock %}
