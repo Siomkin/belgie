@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,7 +13,7 @@ class OrganizationCanalType extends AbstractType
     {
         $builder->add(
             'canals',
-            'choice',
+            ChoiceType::class,
             [
                 'choices' => $options['data'],
                 'label' => 'Каналы',
@@ -29,13 +30,5 @@ class OrganizationCanalType extends AbstractType
             [// 'data_class' => 'App\Entity\Canal'
             ]
         );
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'App_organization_canal';
     }
 }

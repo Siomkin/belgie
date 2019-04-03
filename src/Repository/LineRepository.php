@@ -43,6 +43,24 @@ class LineRepository extends ServiceEntityRepository
         return $this->createPaginator($qb->getQuery(), $page);
     }
 
+    public function selectForDownloads($ids)
+    {
+        $qb = $this->createQueryBuilder('l')
+            ->select('l', 'destinationsBegin', 'destinationsEnd', 'addressCity', 'addressRegion', 'addressStreet', 'addressCityEnd', 'addressRegionEnd', 'addressStreetEnd')
+            ->leftJoin('l.destinationsBegin', 'destinationsBegin')
+            ->leftJoin('l.destinationsEnd', 'destinationsEnd')
+            ->leftJoin('destinationsBegin.addressCity', 'addressCity')
+            ->leftJoin('destinationsBegin.addressRegion', 'addressRegion')
+            ->leftJoin('destinationsBegin.addressStreet', 'addressStreet')
+            ->leftJoin('destinationsEnd.addressCity', 'addressCityEnd')
+            ->leftJoin('destinationsEnd.addressRegion', 'addressRegionEnd')
+            ->leftJoin('destinationsEnd.addressStreet', 'addressStreetEnd')
+            ->orderBy('l.extId', 'ASC');
+        $qb->andWhere($qb->expr()->in('l.extId', ':ids'))->setParameter('ids', $ids);
+
+        return $qb->getQuery()->getResult();
+    }
+
     private function createPaginator(Query $query, int $page): Pagerfanta
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($query));

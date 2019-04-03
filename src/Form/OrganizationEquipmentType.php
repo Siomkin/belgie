@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class OrganizationEquipmentType extends AbstractType
 {
@@ -12,7 +12,7 @@ class OrganizationEquipmentType extends AbstractType
     {
         $builder->add(
             'equipments',
-            'choice',
+            ChoiceType::class,
             [
                 'choices' => $options['data'],
                 'label' => 'Оборудование',
@@ -21,21 +21,5 @@ class OrganizationEquipmentType extends AbstractType
                 'required' => false,
             ]
         );
-    }
-
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults(
-            [// 'data_class' => 'App\Entity\Canal'
-            ]
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'App_organization_equipment';
     }
 }

@@ -17,30 +17,32 @@
         </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for organization in organizations %}
             <tr>
-                <td><a href="{{ path('organization_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
+                <td>{{ organization.id }}</td>
+                <td>{{ organization.name }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('organization_equipments', { 'id': entity.id }) }}">Список оборудования</a>
+                            <a href="{{ path('organization_equipments', { 'id': organization.id }) }}">Список оборудования</a>
                         </li>
                         <li>
-                            <a href="{{ path('organization_lines', { 'id': entity.id }) }}">Список линий связи</a>
+                            <a href="{{ path('organization_lines', { 'id': organization.id }) }}">Список линий связи</a>
                         </li>
                         <li>
-                            <a href="{{ path('organization_canals', { 'id': entity.id }) }}">Список каналов связи</a>
+                            <a href="{{ path('organization_canals', { 'id': organization.id }) }}">Список каналов связи</a>
                         </li>
                         <li>
-                            <a href="{{ path('organization_edit', { 'id': entity.id }) }}">Редактировать</a>
+                            <a href="{{ path('organization_edit', { 'id': organization.id }) }}">Редактировать</a>
                         </li>
                     </ul>
                 </td>
                 <td>
-                    <li>
-                        <a href="{{ path('organization_download', { 'id': entity.id }) }}">Скачать данные</a>
-                    </li>
+                    <ul>
+                        <li>
+                            <a href="{{ path('organization_download', { 'id': organization.id }) }}">Скачать данные</a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         {% endfor %}

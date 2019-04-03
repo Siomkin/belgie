@@ -37,6 +37,22 @@ class CanalRepository extends ServiceEntityRepository
         return $this->createPaginator($qb->getQuery(), $page);
     }
 
+    public function selectForDownloads($ids)
+    {
+        $qb = $this->createQueryBuilder('c')
+            ->select('c', 'beginEquip', 'endEquip', 'beginPorts', 'endPorts', 'lines')
+            ->leftJoin('c.beginEquip', 'beginEquip')
+            ->leftJoin('c.endEquip', 'endEquip')
+            ->leftJoin('c.beginPorts', 'beginPorts')
+            ->leftJoin('c.endPorts', 'endPorts')
+            ->leftJoin('c.lines', 'lines')
+            ->orderBy('c.extId', 'ASC');
+
+        $qb->andWhere($qb->expr()->in('c.extId', ':ids'))->setParameter('ids', $ids);
+
+        return $qb->getQuery()->getResult();
+    }
+
     private function createPaginator(Query $query, int $page): Pagerfanta
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($query));

@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Organization;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,20 +21,12 @@ class OrganizationType extends AbstractType
             );
     }
 
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
             [
-                'data_class' => 'App\Entity\Organization',
+                'data_class' => Organization::class,
             ]
         );
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'App_organization';
     }
 }

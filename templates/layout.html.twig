@@ -14,7 +14,7 @@
     {% block stylesheets %}
             {{ encore_entry_link_tags('css/app') }}
     {% endblock %}
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,16 +37,16 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         {% block content_header_more %}
                             <ul class="nav navbar-nav">
-                                <li><a href="{{ path('equipment') }}">Оборудование</a></li>
-                                <li><a href="{{ path('line') }}">Линии связи</a></li>
+                                <li><a href="{{ path('equipment_index') }}">Оборудование</a></li>
+                                <li><a href="{{ path('line_index') }}">Линии связи</a></li>
                                 <li><a href="{{ path('canal') }}">Каналы связи</a></li>
                                 <li><a href="#">|</a></li>
                                 <li><a href="{{ path('street') }}">Улицы</a></li>
                                 <li><a href="{{ path('city') }}">Города</a></li>
                                 <li><a href="{{ path('region') }}">Область</a></li>
-                                <li><a href="{{ path('equipmenttype') }}">Тип оборуд.</a></li>
+                                <li><a href="{{ path('equipment_type_index') }}">Тип оборуд.</a></li>
                                 <li><a href="#">|</a></li>
-                                <li><a href="{{ path('organization') }}">Организация</a></li>
+                                <li><a href="{{ path('organization_index') }}">Организация</a></li>
                             </ul>
                         {% endblock %}
                     </div>
@@ -67,7 +67,14 @@
     {% endblock %}
 </div>
 {% block javascripts %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     {{ encore_entry_script_tags('js/app') }}
+    <script>
+        $(document).ready(function () {
+            $("select").select2({placeholder: "Выберите"});
+        });
+    </script>
 {% endblock %}
 </body>
 </html>

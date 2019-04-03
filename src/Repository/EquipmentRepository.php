@@ -40,6 +40,21 @@ class EquipmentRepository extends ServiceEntityRepository
         return $this->createPaginator($qb->getQuery(), $page);
     }
 
+    public function selectForDownloads($ids)
+    {
+        $qb = $this->createQueryBuilder('e')
+            ->select('e', 'destinations', 'type', 'addressCity', 'addressRegion', 'addressStreet')
+            ->leftJoin('e.destinations', 'destinations')
+            ->leftJoin('e.type', 'type')
+            ->leftJoin('destinations.addressCity', 'addressCity')
+            ->leftJoin('destinations.addressRegion', 'addressRegion')
+            ->leftJoin('destinations.addressStreet', 'addressStreet')
+            ->orderBy('e.extId', 'ASC');
+        $qb->andWhere($qb->expr()->in('e.extId', ':ids'))->setParameter('ids', $ids);
+
+        return $qb->getQuery()->getResult();
+    }
+
     private function createPaginator(Query $query, int $page): Pagerfanta
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
