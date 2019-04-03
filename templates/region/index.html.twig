@@ -16,13 +16,13 @@
         </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for region in regions %}
             <tr>
-                <td>{{ entity.id }}</td>
-                <td><a href="{{ path('region_show', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+                <td>{{ region.id }}</td>
+                <td><a href="{{ path('region_show', { 'id': region.id }) }}">{{ region.name }}</a></td>
 
                 <td>
-                    <a href="{{ path('region_edit', { 'id': entity.id }) }}">редактировать</a>
+                    <a href="{{ path('region_edit', { 'id': region.id }) }}">редактировать</a>
                 </td>
             </tr>
         {% endfor %}

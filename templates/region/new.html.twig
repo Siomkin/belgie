@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Добавить регион</h1>
+
+    {{ include('region/_form.html.twig') }}
+
+    <a href="{{ path('region') }}">{{ 'back_to_list'|trans }}</a>
+{% endblock %}
