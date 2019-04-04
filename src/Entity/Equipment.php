@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Equipment
 {
-    public const NUM_ITEMS = 100;
+    public const NUM_ITEMS = 50;
 
     /**
      * @var int
