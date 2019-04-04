@@ -322,15 +322,25 @@ class OrganizationController extends AbstractController
         $response->headers->set('Content-Type', 'text/xml');
         $response->headers->set('Content-Disposition', 'attachment; filename="'.$organization->getName().'.xml"');
 
-        return $this->render(
+        $outXML = $this->renderView(
             'organization/download.xml.twig',
             [
                 'organization' => $organization,
                 'equipments' => $equipments,
                 'lines' => $lines,
                 'canals' => $canals,
-            ],
-            $response
+            ]
         );
+
+        //clean up xml
+        $xml = new \DOMDocument();
+        $xml->preserveWhiteSpace = false;
+        $xml->formatOutput = true;
+        $xml->loadXML($outXML);
+        $content = $xml->saveXML();
+
+        $response->setContent($content);
+
+        return $response;
     }
 }
