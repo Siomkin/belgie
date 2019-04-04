@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content -%}
+    <h1>Добавить канал</h1>
+
+    {{ include('canal/_form.html.twig',{'button_label':'Сохранить'}) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('canal') }}">
+                {{ 'back_to_list'|trans }}
+            </a>
+        </li>
+    </ul>
+{% endblock %}

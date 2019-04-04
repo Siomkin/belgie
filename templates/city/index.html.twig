@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Города</h1>
+    <div class="text-right">
+        <a class="btn btn-default" href="{{ path('city_new') }}">
+            Добавить город
+        </a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for city in cities %}
+            <tr>
+                <td>{{ city.id }}</td>
+                <td><a href="{{ path('city_show', { 'id': city.id }) }}">{{ city.name }}</a></td>
+                <td>
+                    <a href="{{ path('city_edit', { 'id': city.id }) }}">Редактировать</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

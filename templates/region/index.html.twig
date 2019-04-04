@@ -1,0 +1,31 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Список регионов</h1>
+    <div class="text-right">
+        <a class="btn btn-default" href="{{ path('region_new') }}">
+            Добавить регион
+        </a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for region in regions %}
+            <tr>
+                <td>{{ region.id }}</td>
+                <td><a href="{{ path('region_show', { 'id': region.id }) }}">{{ region.name }}</a></td>
+
+                <td>
+                    <a href="{{ path('region_edit', { 'id': region.id }) }}">редактировать</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

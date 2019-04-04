@@ -1,0 +1,44 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Оборудование</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Внутренний идентификатор</th>
+            <td>{{ equipment.code }}</td>
+        </tr>
+        <tr>
+            <th>Производитель</th>
+            <td>{{ equipment.vendor }}</td>
+        </tr>
+        <tr>
+            <th>Марка(модель) оборудования</th>
+            <td>{{ equipment.model }}</td>
+        </tr>
+        <tr>
+            <th>Тип оборудования</th>
+            <td>{{ equipment.type.name }}</td>
+        </tr>
+        <tr>
+            <th>Включен</th>
+            <td>{{ equipment.isActiveSw }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('equipment_index') }}">
+                {{ 'back_to_list'|trans }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('equipment_edit', { 'extId': equipment.extId }) }}">
+                редактировать
+            </a>
+        </li>
+    </ul>
+    <div class="text-right"> {{ include('equipment/_delete_form.html.twig') }}</div>
+{% endblock %}

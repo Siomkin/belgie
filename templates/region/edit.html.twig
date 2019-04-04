@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Редактировать регион</h1>
+
+    {{ include('region/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('region') }}">{{ 'back_to_list'|trans }}</a>
+
+    <div class="text-right">{{ include('region/_delete_form.html.twig') }}</div>
+{% endblock %}

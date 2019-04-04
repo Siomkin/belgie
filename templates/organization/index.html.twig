@@ -1,0 +1,52 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Список организаций</h1>
+    <div class="text-right">
+        <a class="btn btn-default" href="{{ path('organization_new') }}">
+            Добавить организацию
+        </a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+            <th>Действия</th>
+            <th>Данные</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for organization in organizations %}
+            <tr>
+                <td>{{ organization.id }}</td>
+                <td>{{ organization.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('organization_equipments', { 'id': organization.id }) }}">Список оборудования</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('organization_lines', { 'id': organization.id }) }}">Список линий связи</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('organization_canals', { 'id': organization.id }) }}">Список каналов связи</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('organization_edit', { 'id': organization.id }) }}">Редактировать</a>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('organization_download', { 'id': organization.id }) }}">Скачать данные</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

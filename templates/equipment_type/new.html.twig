@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Новый тип оборудования</h1>
+
+    {{ include('equipment_type/_form.html.twig') }}
+
+    <a href="{{ path('equipment_type_index') }}">{{ 'back_to_list'|trans }}</a>
+{% endblock %}

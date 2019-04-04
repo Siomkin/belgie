@@ -1,0 +1,135 @@
+{% block content -%}
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <equipment>
+        {% for equipment in equipments %}
+            <record>
+                <cell id="ext_id">{{ equipment.extId }}</cell>
+                <cell id="code">{{ equipment.code }}</cell>
+                <cell id="vendor">{{ equipment.vendor }}</cell>
+                <cell id="model">{{ equipment.model }}</cell>
+                <cell id="type">{{ equipment.type.name }}</cell>
+                <cell id="destinations">
+                    <place id="type">{% if equipment.destinations.type %}2{% else %}1{% endif %}</place>
+                    {% if equipment.destinations.type %}
+                        <place id="coords">
+                            <details id="latitude_deg">{{ equipment.destinations.latitudeDeg }}</details>
+                            <details id="latitude_min">{{ equipment.destinations.latitudeMin }}</details>
+                            <details id="latitude_sec">{{ equipment.destinations.latitudeSec }}</details>
+                            <details id="longitude_deg">{{ equipment.destinations.longitudeDeg }}</details>
+                            <details id="longitude_min">{{ equipment.destinations.longitudeMin }}</details>
+                            <details id="longitude_sec">{{ equipment.destinations.longitudeSec }}</details>
+                        </place>
+                    {% else %}
+                        <place id="address">
+                            <details id="address_city">{{ equipment.destinations.addressCity.name }}</details>
+                            <details id="address_region">{{ equipment.destinations.addressRegion.name }}</details>
+                            <details id="address_index">{{ equipment.destinations.addressIndex }}</details>
+                            <details id="address_street">{{ equipment.destinations.addressStreet.name }}</details>
+                            <details id="address_building_number">{{ equipment.destinations.addressBuildingNumber }}</details>
+                            <details id="address_office_number">{{ equipment.destinations.addressOfficeNumber }}</details>
+                        </place>
+                    {% endif %}
+                </cell>
+                <cell id="is_active_sw">{% if equipment.isActiveSw %}Y{% else %}N{% endif %}</cell>
+            </record>
+        {% endfor %}
+    </equipment>
+
+    <line>
+        {% for line in lines %}
+            <record>
+                <cell id="ext_id">{{ line.extId }}</cell>
+                <cell id="name">{{ line.name }}</cell>
+                <cell id="code">{{ line.code }}</cell>
+                <cell id="destinations_begin">
+                    <place id="type">{% if line.destinationsBegin.type %}2{% else %}1{% endif %}</place>
+                    {% if line.destinationsBegin.type %}
+                        <place id="coords">
+                            <details id="latitude_deg">{{ line.destinationsBegin.latitudeDeg }}</details>
+                            <details id="latitude_min">{{ line.destinationsBegin.latitudeMin }}</details>
+                            <details id="latitude_sec">{{ line.destinationsBegin.latitudeSec }}</details>
+                            <details id="longitude_deg">{{ line.destinationsBegin.longitudeDeg }}</details>
+                            <details id="longitude_min">{{ line.destinationsBegin.longitudeMin }}</details>
+                            <details id="longitude_sec">{{ line.destinationsBegin.longitudeSec }}</details>
+                        </place>
+                    {% else %}
+                        <place id="address">
+                            <details id="address_city">{{ line.destinationsBegin.addressCity.name }}</details>
+                            <details id="address_region">{{ line.destinationsBegin.addressRegion.name }}</details>
+                            <details id="address_index">{{ line.destinationsBegin.addressIndex }}</details>
+                            <details id="address_street">{{ line.destinationsBegin.addressStreet.name }}</details>
+                            <details id="address_building_number">{{ line.destinationsBegin.addressBuildingNumber }}</details>
+                            <details id="address_office_number">{{ line.destinationsBegin.addressOfficeNumber }}</details>
+                        </place>
+                    {% endif %}
+                </cell>
+                <cell id="destinations_end">
+                    <place id="type">{% if line.destinationsEnd.type %}2{% else %}1{% endif %}</place>
+                    {% if line.destinationsEnd.type %}
+                        <place id="coords">
+                            <details id="latitude_deg">{{ line.destinationsEnd.latitudeDeg }}</details>
+                            <details id="latitude_min">{{ line.destinationsEnd.latitudeMin }}</details>
+                            <details id="latitude_sec">{{ line.destinationsEnd.latitudeSec }}</details>
+                            <details id="longitude_deg">{{ line.destinationsEnd.longitudeDeg }}</details>
+                            <details id="longitude_min">{{ line.destinationsEnd.longitudeMin }}</details>
+                            <details id="longitude_sec">{{ line.destinationsEnd.longitudeSec }}</details>
+                        </place>
+                    {% else %}
+                        <place id="address">
+                            <details id="address_city">{{ line.destinationsEnd.addressCity.name }}</details>
+                            <details id="address_region">{{ line.destinationsEnd.addressRegion.name }}</details>
+                            <details id="address_index">{{ line.destinationsEnd.addressIndex }}</details>
+                            <details id="address_street">{{ line.destinationsEnd.addressStreet.name }}</details>
+                            <details id="address_building_number">{{ line.destinationsEnd.addressBuildingNumber }}</details>
+                            <details id="address_office_number">{{ line.destinationsEnd.addressOfficeNumber }}</details>
+                        </place>
+                    {% endif %}
+                </cell>
+                <cell id="node_length">{{ line.nodeLength }}</cell>
+                <cell id="cable_type">{{ line.cableType }}</cell>
+                <cell id="cable_mark">{{ line.cableMark }}</cell>
+                <cell id="cable_cap">{{ line.cableCap }}</cell>
+                <cell id="capacity">{{ line.capacity }}</cell>
+                <cell id="is_active_sw">{% if line.isActiveSw %}Y{% else %}N{% endif %}</cell>
+            </record>
+        {% endfor %}
+    </line>
+    <canal>
+        {% for canal in canals %}
+            <record>
+                <cell id="ext_id">{{ canal.extId }}</cell>
+                <cell id="name">{{ canal.name }}</cell>
+                <cell id="begin_equip">{{ canal.beginEquip.extId }}</cell>
+                <cell id="end_equip">{{ canal.EndEquip.extId }}</cell>
+                <cell id="ports_begin">
+                    {% for beginPort in canal.beginPorts %}
+                        <item>
+                            <param id="id">{{ beginPort.id }}</param>
+                            <param id="interface">{{ canal.getPortInterface(beginPort.interface) }}</param>
+                            <param id="speed">{{ beginPort.speed }}</param>
+                            <param id="type">{{ canal.getPortSpeedType(beginPort.type) }}</param>
+                        </item>
+                    {% endfor %}
+                </cell>
+                <cell id="ports_end">
+                    {% for endPort in canal.endPorts %}
+                        <item>
+                            <param id="id">{{ endPort.id }}</param>
+                            <param id="interface">{{ canal.getPortInterface(endPort.interface) }}</param>
+                            <param id="speed">{{ endPort.speed }}</param>
+                            <param id="type">{{ canal.getPortSpeedType(endPort.type) }}</param>
+                        </item>
+                    {% endfor %}
+                </cell>
+                <cell id="line">
+                    {% for line in canal.lines %}
+                        <item>{{ line.extId }}</item>
+                    {% endfor %}
+                </cell>
+                <cell id="is_active_sw">{% if canal.isActiveSw %}Y{% else %}N{% endif %}</cell>
+            </record>
+        {% endfor %}
+    </canal>
+</data>
+{% endblock %}

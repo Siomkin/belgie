@@ -1,0 +1,29 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Список типов оборудования</h1>
+    <div class="text-right">
+        <a class="btn btn-default" href="{{ path('equipment_type_new') }}">
+            Добавить новый тип
+        </a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for equipment_type in equipment_types %}
+            <tr>
+                <td>{{ equipment_type.id }}</td>
+                <td><a href="{{ path('equipment_type_show', { 'id': equipment_type.id }) }}">{{ equipment_type.name }}</a></td>
+                <td><a href="{{ path('equipment_type_edit', { 'id': equipment_type.id }) }}">редактировать</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

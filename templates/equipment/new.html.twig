@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Оборудование</h1>
+
+    {{ include('equipment/_form.html.twig') }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('equipment_index') }}">
+                {{ 'back_to_list'|trans }}
+            </a>
+        </li>
+    </ul>
+
+
+{% endblock %}

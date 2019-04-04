@@ -1,0 +1,9 @@
+{% extends 'layout.html.twig' %}
+
+{% block content -%}
+    <h1>Добавление линии</h1>
+
+    {{ include('line/_form.html.twig') }}
+
+    <a href="{{ path('line_index') }}">{{ 'back_to_list'|trans }}</a>
+{% endblock %}

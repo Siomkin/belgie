@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="ru" target-language="ru" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="wqAwPIi" resname="log_in">
+        <source>log_in</source>
+        <target>Войти</target>
+      </trans-unit>
+      <trans-unit id="ACcM9j_" resname="logout">
+        <source>logout</source>
+        <target>Выйти</target>
+      </trans-unit>
+      <trans-unit id="6tlp1bV" resname="back_to_list">
+        <source>back_to_list</source>
+        <target>Назад к списку</target>
+      </trans-unit>
+      <trans-unit id="FQn1YfJ" resname="Save">
+        <source>Save</source>
+        <target>Сохранить</target>
+      </trans-unit>
+      <trans-unit id="wcEAnT8" resname="Update">
+        <source>Update</source>
+        <target>Обновить</target>
+      </trans-unit>
+      <trans-unit id="4tClSWj" resname="Delete">
+        <source>Delete</source>
+        <target>Удалить</target>
+      </trans-unit>
+      <trans-unit id="9GluP_Z" resname="sign_in">
+        <source>sign_in</source>
+        <target>Вход</target>
+      </trans-unit>
+      <trans-unit id="DEncs32" resname="button.sign_in">
+        <source>button.sign_in</source>
+        <target>Войти</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
