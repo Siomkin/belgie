@@ -3,13 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * city.
  *
- * @ORM\Table(name="city")
+ * @ORM\Table(name="city",indexes={})
  * @ORM\Entity
+ * @UniqueEntity("name")
  */
 class City
 {
@@ -25,7 +27,7 @@ class City
     /**
      * @var string
      * @Assert\NotBlank()
-     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false, unique=true)
      */
     private $name;
 
