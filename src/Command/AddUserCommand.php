@@ -141,7 +141,6 @@ class AddUserCommand extends Command
             $password = $this->io->askHidden('Password (your type will be hidden)', [$this->validator, 'validatePassword']);
             $input->setArgument('password', $password);
         }
-
     }
 
     /**
@@ -191,7 +190,6 @@ class AddUserCommand extends Command
 
         // validate password and email if is not this input means interactive.
         $this->validator->validatePassword($plainPassword);
-
     }
 
     /**

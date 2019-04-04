@@ -109,7 +109,6 @@ class AppFixtures extends Fixture
 
     private function loadOrganization(ObjectManager $manager): void
     {
-
         $organization = new Organization();
         $organization->setName('Test organization');
 
@@ -263,5 +262,4 @@ class AppFixtures extends Fixture
             'Ямницкая',
         ];
     }
-
 }

@@ -5,13 +5,13 @@
 
     {{ form_start(edit_form) }}
     {{ form_widget(edit_form) }}
-    <button class="btn btn-default">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-default">{{ button_label|default('Save')|trans}}</button>
     {{ form_end(edit_form) }}
 
     <ul class="record_actions">
         <li>
             <a href="{{ path('organization_index') }}">
-                назад к списку
+                {{ 'back_to_list'|trans }}
             </a>
         </li>
     </ul>

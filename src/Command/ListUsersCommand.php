@@ -113,7 +113,5 @@ HELP
         // instead of just displaying the table of users, store its contents in a variable
         $usersAsATable = $bufferedOutput->fetch();
         $output->write($usersAsATable);
-
     }
-
 }

@@ -85,7 +85,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-         return new RedirectResponse($this->urlGenerator->generate('canal'));
+        return new RedirectResponse($this->urlGenerator->generate('canal'));
     }
 
     protected function getLoginUrl()
