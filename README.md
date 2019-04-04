@@ -1,69 +1,70 @@
-Symfony Standard Edition
-========================
+#####  Подготовка файла с данными для регистрация информационных сетей, систем и ресурсов в АИС БелГИЭ.  
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+Возможности
+ - Учёт списка оборудования и места установки
+ - Учёт линий связи
+ - Учёт каналов связи
+ - Типы оборудования
+ - Разделение на организации или отдельные объекты
+ - Работа с адресами
+ - Выбор данных для подготовки xml и загрузки на портал   
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
 
-What's inside?
---------------
+#### Установка
 
-The Symfony Standard Edition is configured with the following defaults:
+    composer create-project siomkin/belgie
 
-  * An AppBundle you can use to start coding;
+Изменить настройки подключения к бд в .env
 
-  * Twig as the only configured template engine;
+Создать таблицы бд
 
-  * Doctrine ORM/DBAL;
+    php bin/console doctrine:schema:create
 
-  * Swiftmailer;
+Загрузить данные типпов оборудования и адреса 
 
-  * Annotations enabled for everything.
+    php bin/console doctrine:fixtures:load    
 
-It comes pre-configured with the following bundles:
+#### Работа с пользователя
+###### Creates users and stores them in the database
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+Usage:
+`app:add-user [options] [--] [<username> [<password>]]`
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+The app:add-user command creates new users and saves them in the database:
+  
+    php bin/console app:add-user username password
+    
+By default the command creates regular users. To create administrator users, add the --admin option:
+    
+    php bin/console app:add-user username password --admin
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+  
+###### Deletes users from the database
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+Usage:
+`app:delete-user <username>`
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+The app:delete-user command deletes users from the database:
+  
+    php bin/console app:delete-user username
+  
+If you omit the argument, the command will ask you to provide the missing value:
+  
+    php bin/console app:delete-user
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
 
-  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
-    library
+###### Lists all the existing users
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+Usage:
+`  app:list-users [options]`
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
+The app:list-users command lists all the users registered in the application:
+  
+    php bin/console app:list-users
+    
+By default the command only displays the 50 most recent users. Set the number of results to display with the --max-results option:
+  
+    php bin/console app:list-users --max-results=2000
+    
 
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  http://symfony.com/doc/2.6/book/installation.html
-[6]:  http://symfony.com/doc/2.6/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  http://symfony.com/doc/2.6/book/doctrine.html
-[8]:  http://symfony.com/doc/2.6/book/templating.html
-[9]:  http://symfony.com/doc/2.6/book/security.html
-[10]: http://symfony.com/doc/2.6/cookbook/email.html
-[11]: http://symfony.com/doc/2.6/cookbook/logging/monolog.html
-[12]: http://symfony.com/doc/2.6/cookbook/assetic/asset_management.html
-[13]: http://symfony.com/doc/2.6/bundles/SensioGeneratorBundle/index.html
